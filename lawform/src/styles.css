@@ -1,3 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+
+
+@theme{
+       
+    --spacing-main-heigth: 1024px; /* Preserved typo from friend's code */
+    --spacing-sidebar: 310px;
+    --spacing-sidebar-list-width: 262px;
+    --spacing-header-div-width: 1094px;
+    --spacing-header-text-width: 536px;
+    --spacing-user-box-width: 542px;
+    --spacing-container-width: 970px;
+    --spacing-section-header-width: 413px;
+    --spacing-section-height: 656px;
+    --spacing-content-block-width: 938px;
+    --spacing-content-block-height: 624px;
+    --spacing-notice-width: 906px;
+    --spacing-notice-height: 562px;
+    --spacing-button-width: 970px;
+    --spacing-button-div: 473px;
+    --spacing-download-button: 401px;
+    --spacing-dropdown-width: 457px;
+    --spacing-nav-items: 72px;
+    --spacing-notice-heading-width: 362px;
+    --spacing-download-button-text: 149px;
+    --spacing-noticelist-width: 780px;
+    --spacing-sort-case-width: 1050px;
+
+    /* --- Your Unique Variables --- */
+    --spacing-homenotice-width: 1082px;
+    --spacing-historysection-width: 821px;
+    --spacing-createnotice-button: 263px;
+    --spacing-noticegenerator-width: 527px;
+    --spacing-noticecount-width: 463px;
+    --spacing-noticespan-width: 421px;
+    --spacing-noticespan2-width: 431px;
+    --spacing-historysearch-width: 340px;
+    --spacing-historysearch2-width: 300px;
+
+    /* --- Shared / Overlapping Variables --- */
+    --spacing-main-width: 1440px;
+    --spacing-main-height: 1024px;
+    --spacing-section-width: 1130px;
+    --spacing-home-notice-height: 896px;
+
+
+        /* Colour */
+                
+        --color-steel-blue:#4478A9;
+        --color-button:#346FCC;
+        --color-dark-gray:#313131; 
+        --color-charcoal-gray:#3F3F3F;
+        --color-medium-gray:#707070;
+        --color-muted-gray:#B7B7B799;
+        --color-silver-gray:#919192; 
+        --color-slate-gray:#787878;
+        --color-charcoal-black:#1D1B20;
+        --color-black:#000000;
+        --color-white:#FFFFFF;
+        --color-blue-gray-light:#BDC3D8;
+        --color-royal-blue:#5279E4;
+        --color-pale-blue:#DEE7FF;
+        --color-offwhite:#FEFEFE;
+        --color-light-gray:#EDEDED;
+        --color-lavender-gray:#EFEEF3;
+        --color-bright-gray:#F0F0F0;
+        --color-midnight-gray:#1C1B1F;
+        --color-platinum:#DFDFDF;
+        --color-dim-gray:#5A5A5A80;
+        --color-navy-blue:#000A16B2;
+        --color-lightergrey:'#000A1666';
+
+        /* font family */
+        --font-poppins: 'Poppins', sans-serif;
+        --font-inter: 'Inter', sans-serif;
+}
+

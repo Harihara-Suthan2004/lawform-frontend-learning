@@ -1,0 +1,247 @@
+<!-- header -->
+<!-- <div class="flex w-[1130px] h-20  pt-4 pr-6 pb-4 pl-6 border-b border-[#FEFEFE]">
+    <div class="flex justify-between w-[1082px] h-12 gap-2.5">
+        <div class="w-[536px] h-12 gap-2">
+            <span class="font-poppins font-semibold text-3xl leading-none">Home</span>
+        </div>
+        <div class="w-[536px] h-10 flex justify-between">
+            <div class="w-72 h-10 gap-2">
+
+            </div>
+            <div class="w-40 h-10 rounded-[100px] flex items-center justify-center bg-[#EDEDED] p-2 gap-2">
+                <img src="loginProfile.jpg" alt="login profile"
+                    class="w-6 h-6 rounded-3xl border-[0.24px] gap-0.5 border-[0.24px]">
+                <div class="w-20 h-7 flex flex-col gap-1">
+                    <span class=" w-20 h-3.5 font-medium text-xs leading-tight text-[#3F3F3F]">James smith </span>
+                    <span class="w-7 h-2.5 font-normal leading-tight text-[8px] text-[#707070]">Admin</span>
+                </div>
+                <img src="loginProfileDownArrow.png" alt="loginProfileDownArrow" class="w-6 h-6">
+
+            </div>
+        </div>
+
+    </div>
+</div> -->
+<app-header title="Home"></app-header>
+<!-- title -->
+<div class="w-section-width h-12 border-b border-b-muted-gray bg-white  pr-6 pl-6 gap-6">
+    <div class="flex items-center w-20 h-12 border-b-2 gap-4 border-slate-gray">
+        <div class="w-8 h-8 p-1 relative gap-2.5">
+            <img src="HomePageHeaderIcon.png" alt="Home" class=" w-6 h-6 absolute top-1 left-1">
+
+        </div>
+        <div class="w-11 h-6 ">
+            <span class="font-poppins font-normal text-sm leading-relaxed text-charcoal-black">Home</span>
+        </div>
+
+    </div>
+</div>
+
+
+    <!-- legal notice section -->
+    <div class="flex flex-col w-section-width h-homenotice-height pt-6 pl-6  gap-8">
+        <div class="flex justify-between w-homenotice-width h-20 ">
+            <div class="max-w-xl h-20">
+                <span class="flex items-center font-poppins font-semibold text-5xl leading-none">Legal Notice Generator</span>
+            </div>
+            <button
+                class="w-createnotice-button h-14 rounded-lg border-r-2 pt-4 pr-6 pb-4 pl-6 gap-1.5 bg-button text-white">
+                <span class="font-inter flex items-center font-semibold text-lg leading-none ">Create New Legal Notice</span>
+
+            </button>
+
+        </div>
+        <!-- notice generator -->
+        <div class="flex w-homenotice-width h-32 gap-7">
+            <!-- notice generator section 1 -->
+            <div
+                class="flex flex-col justify-between font-inter w-noticegenerator-width min-w-48 h-32 pt-4 pb-4 pr-8 pl-8 bg-bright-gray rounded-lg gap-8">
+                <div class="w- h-5">
+                    <span class=" font-medium text-[14px] leading-5 tracking-normal space-x-2.5">Notice
+                        Generated</span>
+                </div>
+                <div class="flex items-center justify-between  rounded-lg w-noticecount-width h-10">
+                    <div class="w-11 h-9 rounded-xl">
+                        <span class=" w-10 h-full font-semibold text-2xl space-x-2 leading-relaxed">128</span>
+                    </div>
+                    <div class="flex items-center justify-end w-noticespan-width h-4 rounded-xl gap-2">
+                        <span class="flex justify-end w-14 h-4 font-normal leading-3 space-x-2">+11.01%</span>
+                        <div class="w-4 h-4 rounded-lg ">
+                            <img src="NoticeGeneratorGraphArrow.png" alt=""
+                                class="w-3 h-2 mt-1  fill-black">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- notice generator section 2 -->
+            <div
+                class="flex flex-col justify-between font-inter w-noticegenerator-width min-w-48 h-32 pt-4 pb-4 pr-8 pl-8 bg-bright-gray rounded-lg gap-8">
+                <div class="w-noticecount-width h-5">
+                    <span class=" font-medium text-[14px] leading-5 tracking-normal space-x-2.5">Templet
+                        Available</span>
+                </div>
+                <div class="flex items-center justify-between rounded-lg w-noticecount-width h-9">
+                    <div class="flex items-center justify-center w-8 h-9 rounded-xl">
+                        <span class=" w-full font-semibold text-2xl space-x-2 leading-relaxed">03</span>
+                    </div>
+                    <div class="flex items-center justify-center rounded-xl gap-2 text-hover-blue">
+                        <span class="w-full h-5 font-semibold leading-none text-lg">Create New +</span>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- history list section -->
+        <div class="w-homenotice-width h-download-button rounded-lg border pl-px pr-px pb-2  border-bright-gray bg-white overflow-hidden">
+            <div class="flex justify-between pt-4 pr-6 pb-4 pl-6 w-homenotice-width h-14 rounded-tl-lg rounded-tr-lg">
+                <div class="w-16 h-6 gap-1">
+                    <span class="w-full h-6 gap-2 font-poppins font-medium text-xl leading-[1.2] text-dark-gray">History</span>
+                </div>
+                <a
+                routerLink="/history" 
+                class="flex justify-between w-24 h-6 gap-2.5 text-button">
+                    <div class="flex justify-center items-center w-full h-full rounded-sm gap-2">
+                        <span class="font-inter font-semibold text-lg leading-none">View all</span>
+                    </div>
+                    <div class="w-6 h-6 flex items-center">
+                        <img src="historyViewIcon.png" alt="" class="w-3.5 h-3.5 top-1.5 left-1.5">
+
+                    </div>
+
+
+                </a>
+            </div>
+            <table>
+                <thead>
+                    <!-- table heading -->
+                    <tr class="flex bg-bright-gray w-homenotice-width h-14">
+                        <th
+                            class="bg-bright-gray flex items-center w-72 h-14 border-t border-b border-l border-bright-gray px-6 text-midnight-gray">
+                            <div class="flex justify-start items-center gap-2">
+                                <div class="flex max-w-32 h-5  items-center gap-1">
+                                    <span class="flex justify-center items-center font-poppins font-semibold whitespace-nowrap text-base leading-none">Client Name</span>
+                                    <div class="w-7 h-5 pr-1 pl-1">
+                                        <div class="w-5 h-5 relative">
+                                        <img src="HistoryTableHead1.png" alt="" class="w-4 h-5 absolute top-px left-0.5">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <!-- second heading -->
+                        <th
+                            class="bg-bright-gray w-44 h-14 border-t border-b border-l border-bright-gray pr-4 pl-6 gap-2 text-midnight-gray">
+
+                            <div class="flex justify-center items-center h-full">
+                                <div class="flex items-center justify-center w-36 h-5 gap-1">
+                                    <span class="w-28 h-4 font-poppins font-semibold text-base leading-none">Date Created</span>
+                                    <div class="w-7 h-5 px-1">
+                                        <div class="w-5 h-5 relative">
+                                            <img src="HistoryTableHead1.png" alt="" class="w-4 h-5 top-px left-0.5 absolute">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </th>
+
+                        <!-- third heading -->
+                        <th
+                            class=" w-md h-14 border-t border-b border-l border-bright-gray pr-4 pl-6 gap-2 text-midnight-gray">
+
+                            <div class="flex pl-2 items-center h-full">
+                                <!-- below div width is different -->
+                                <div class="flex  w-24 h-4 gap-1">
+                                    <span class="font-poppins font-semibold text-base leading-none">Notice Title</span>
+                                </div>
+                            </div>
+
+                        </th>
+
+                        <!-- fourth heading -->
+                        <th
+                            class=" w-44 h-14 border-t border-b border-l border-bright-gray pr-4 pl-6 gap-2 text-midnight-gray">
+
+                            <div class="flex items-center justify-center h-full">
+                                <!-- below div width is different -->
+                                <div class="flex items-center justify-center w-14 h-4 gap-1">
+                                    <span class="font-poppins font-semibold text-base leading-none">Status</span>
+                                </div>
+                            </div>
+
+                        </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(item of ProjectAPI().slice(0,5); track $index){
+                    <tr class="flex w-homenotice-width h-14 bg-white overflow-hidden">
+
+                        <!-- first column -->
+                        <td
+                            class="flex items-center w-72 h-14 border-t border-b border-l border-white pr-4 pl-6 gap-2 ">
+
+                            <div class="w-60 h-6 gap-1">
+                                <span class="w-full h-full font-poppins font-normal text-base leading-relaxed text-midnight-gray">
+                                    {{item.ClientName}}
+                                </span>
+                            </div>
+
+                        </td>
+
+
+                        <!-- first row data2 -->
+                        <td>
+                            <div
+                                class="flex justify-center items-center w-44 h-14 border-t border-b border-l border-white pr-4 pl-4 gap-2">
+                                <div class="w-28 h-4 gap-1 flex justify-center">
+                                    <span
+                                        class="w-24 h-full font-poppins font-normal text-base leading-relaxed text-midnight-gray">{{item.Date}}</span>
+                                </div>
+
+                            </div>
+                        </td>
+                        <!-- first row data3 -->
+                        <!-- the below td style is added additionally by me -->
+                        <td class="pl-4">
+                            <div
+                                class="flex items-center w-md h-14 border-t border-b border-l border-white pr-4 pl-4 gap-2">
+
+                                <div class="w-64 h-4 gap-1 flex justify-center">
+                                    <span class="w-full h-full font-inter font-normal text-base leading-relaxed text-midnight-gray">
+                                        {{item.NoticeTitle}}
+                                    </span>
+                                </div>
+
+                            </div>
+                        </td>
+
+
+                        <!-- first row data4 -->
+                        <td>
+                            <div
+                                class="flex justify-center items-center w-44  h-14 border-t border-b border-l border-white pr-4 pl-4 gap-2">
+                                <!-- button background color need to add -->
+                                <button
+                                    class="w-28 h-6 rounded-4xl border border-royal-blue bg-pale-blue pt-0.5 pr-3 pb-0.5 pl-3 gap-2 flex justify-center">
+                                    <span class="w-24 h-5 font-poppins  font-medium text-sm  text-blue-600">Downloaded</span>
+                                </button>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>

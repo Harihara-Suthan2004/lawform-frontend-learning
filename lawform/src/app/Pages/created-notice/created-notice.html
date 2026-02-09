@@ -1,0 +1,144 @@
+<!-- overall -->
+<div class="w-section-width h-main-heigth  flex flex-col  ">
+    <app-header title="Create New Legal Notice"></app-header>
+    
+
+    <!-- NavBar -->
+    <nav class="w-full h-12  flex gap-6 px-6 border-b bg-white border-b-muted-gray ">
+
+        <ul class="list-none flex h-full gap-6 m-0 p-0">
+
+            <li class="w-20 h-12 flex gap-1  py-2 items-center cursor-pointer  ">
+                <div class="w-8 h-8 flex gap-2.5 p-1 items-center ">
+                    <div class="w-6 h-6  flex items-center justify-center">
+                        <img src="Vector2.png" alt="Home" class="w-4 h-5">
+                    </div>
+                </div>
+                <span
+                    class="w-10 h-5  font-poppins font-normal text-silver-gray text-sm leading-relaxed tracking-normal">Home</span>
+
+            </li>
+
+            <li class="w-44 h-12 border-b-2 border-b-slate-gray flex gap-1 py-2 items-center cursor-pointer ">
+
+                <span
+                    class="w-44 h-5 text-sm font-poppins font-normal leading-6 tracking-normal text-charcoal-black">Create
+                    New Legal Notice</span>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- Main -->
+    <main class="w-section-width h-home-notice-height  pt-8 pb-8 pr-20 pl-20 flex flex-col  gap-8 justify-start">
+        <div class="w-container-width h-12  relative flex justify-center items-center">
+            <div class="absolute left-0 w-8 h-8  flex items-center justify-center cursor-pointer ">
+                <img src="Arrow.png" alt="">
+            </div>
+
+            <div class="flex items-center w-section-header-width    h-12">
+                <span class="font-poppins font-medium text-3xl leading-none text-center text-dark-gray">Notice Document Preview</span>
+
+            </div>
+
+        </div>
+
+        <section class="w-container-width h-section-height  rounded-lg gap-6 p-4 bg-lavender-gray">
+            <div class="w-content-block-width h-content-block-height bg-white pt-4 pr-1.5 pb-4 pl-4 flex gap-1.5 overflow-y-auto scrollbar-custom">
+                <p class="w-notice-width h-notice-height font-poppins font-normal text-base leading-normal tracking-normal text-black">
+                    Date: 10 January 2025
+
+                    To, Mr. Ramesh Kumar Flat No. 302, Sai Residency MG Road, Andheri East Mumbai 400069
+
+                    Subject: Legal Notice for Non-Payment of Dues under Section 420 of the Indian Penal Code
+                    Dear Sir,
+
+                    Under instructions from and on behalf of my client Mr. Arjun Mehta, residing at Flat No. 1204, Lotus
+                    Heights, Powai, Mumbai 400076, I hereby serve you with the present legal notice as follows:
+                    That my client states that on 15 September 2024, you had entered into a business arrangement with my
+                    client for the supply of electronic goods.
+                    That it has come to my client’s knowledge that despite receiving the said goods, you have failed to
+                    make the agreed payment of ₹2,50,000 (Rupees Two Lakh Fifty Thousand only), thereby committing a
+                    breach of trust and dishonest conduct.
+                    That despite repeated reminders and follow-ups, you have neglected and failed to clear the
+                    outstanding amount, causing financial loss and mental distress to my client.
+                    That my client reserves the right to initiate appropriate civil and criminal proceedings against you
+                    at your own risk, cost, and consequences, should you fail to comply with the demands stated herein.
+                    Therefore, through this notice, you are hereby called upon to:
+                    Pay the outstanding amount of ₹2,50,000 (Rupees Two Lakh Fifty Thousand only)
+                    Within 15 days from the date of receipt of this notice
+                    Failing which, my client shall be constrained to initiate appropriate legal proceedings against you
+                    without any further reference, for which you shall be solely responsible.
+                    This notice is issued to you without prejudice to all other legal rights and remedies available to
+                    my client under law.
+
+                    Yours faithfully,
+                    Adv. Neha Sharma Sharma & Associates 2nd Floor, Sterling Chambers Fort, Mumbai 400001 Contact: +91
+                    98XXXXXXX.
+
+
+
+                    
+                    
+                </p>
+
+            </div>
+
+        </section>
+
+        <div class=" w-button-width h-16 rounded-lg flex gap-6  ">
+            <button
+                class="w-button-div h-16 rounded-lg flex items-center justify-center gap-2 py-4 px-4.5 border-2 border-steel-blue cursor-pointer">
+                <div class="w-6 h-6  flex items-center justify-center">
+                    <img src="Regenerated.png" alt="">
+                </div>
+                <span
+                    class="w-40 h-5 font-inter font-semibold text-[18px] leading-none text-center ">Regenerate
+                    Notice</span>
+            </button>
+
+            <div class="w-button-div h-16 rounded-lg  flex relative overflow-visible z-50 ">
+                <button
+                    class="w-download-button h-full  cursor-pointer   rounded-l-lg border-r-[1.07px] border-r-white py-4 px-4.5 bg-button flex gap-4 items-center justify-center">
+                    <img src="Download.png" alt="" class="w-4 h-5">
+                    <span
+                        class="w-download-button-text h-5  font-inter font-semibold text-lg leading-none  text-white">Download
+                        Notice</span>
+                </button>
+
+                <button class="w-nav-items  h-[63.55px] rounded-r-lg py-4 px-6 gap-[5.35px]  bg-button cursor-pointer " (click)="toggleMenu()">
+                    <img src="DropDown.png" alt="" class="w-6 h-4">
+
+                </button>
+                <!-- dropdown -->
+                 @if(showMenu()){
+                     <div  class="w-full h-40 bg-steel-blue rounded-lg p-2 absolute bottom-full z-50">
+            <div class="w-dropdown-width h-36   ">
+                <div class="w-full h-12 border-b border-b-blue-gray-light flex gap-2 py-2 px-4 ">
+                    <span class="w-24 h-7 font-poppins text-white">Pdf</span>
+                </div>
+
+                <div class="w-dropdown-width h-12 border-b border-b-blue-gray-light flex gap-2 py-2 px-4">
+                    <span class="w-24 h-7 font-poppins text-white">PNG</span>
+                </div>
+
+                <div class="w-dropdown-width h-12 flex gap-2 py-2 px-4">
+                    <span class="w-24 h-7 font-poppins text-white">PNG</span>
+                </div>
+            </div>
+
+        </div>
+
+                 }
+       
+
+
+            </div>
+
+        </div>
+        
+    </main>
+
+</div>

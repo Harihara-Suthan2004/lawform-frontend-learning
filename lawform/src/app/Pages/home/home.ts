@@ -11,6 +11,10 @@ import { RouterLink } from "@angular/router";
   styleUrl: './home.css',
 })
 export class Home {
+  isCreateModel:boolean=true;
+  toggleView(model:boolean){
+    this.isCreateModel=model;
+  }
 http=inject(HttpClient);
   ProjectAPI=signal<APIdatas[]>([]);
 

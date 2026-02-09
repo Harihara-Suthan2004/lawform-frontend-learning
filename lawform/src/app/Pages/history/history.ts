@@ -8,11 +8,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Header } from '../../Components/header/header';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-history',
-  imports: [FormsModule,MatTableModule, MatInputModule, MatFormFieldModule,MatPaginatorModule,Header],
+  imports: [FormsModule,MatTableModule, MatInputModule, MatFormFieldModule,MatPaginatorModule,Header,RouterLink],
   templateUrl: './history.html',
   styleUrl: './history.css',
 })

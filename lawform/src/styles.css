@@ -77,3 +77,21 @@
         --font-inter: 'Inter', sans-serif;
 }
 
+@utility scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #C1C1C1 transparent;
+  /* Chrome, Edge, Safari specific styling */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #C1C1C1;
+    border-radius: 99px;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+}

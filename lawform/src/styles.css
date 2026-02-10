@@ -5,7 +5,7 @@
 
 @theme{
        
-    --spacing-main-heigth: 1024px; /* Preserved typo from friend's code */
+    --spacing-main-heigth: 1024px; 
     --spacing-sidebar: 310px;
     --spacing-sidebar-list-width: 262px;
     --spacing-header-div-width: 1094px;

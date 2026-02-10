@@ -1,0 +1,124 @@
+<!-- overall -->
+<div class="w-section-width h-main-heigth font-poppins flex flex-col ">
+    <app-header title="History"></app-header>
+
+    <!-- Navbar -->
+    <nav class="h-12 w-section-width  border-b flex gap-6 px-6 bg-white border-b-muted-gray ">
+        <ul class="list-none flex h-full gap-6 m-0 p-0">
+            <li class="w-20 h-12  py-2 flex items-center gap-1 cursor-pointer " routerLink="/history">
+                <div class="w-8 h-8 flex  gap-2.5 p-1 ">
+                    <div class="w-6 h-6 flex items-center ">
+                        <img src="History.png" alt="" class="w-5 h-5 top-1 left-1 ">
+                    </div>
+                </div>
+                <span
+                    class="w-12 h-5 font-poppins font-normal text-sm leading-relaxed tracking-normal text-charcoal-black ">History</span>
+
+            </li>
+            <li class="w-nav-items h-12  flex items-center gap-4 border-b-2 border-b-slate-gray cursor-pointer ">
+                <div class=" h-9  py-2 flex gap-1 items-center ">
+                    <span
+                        class="w-nav-items h-5 font-poppins font-normal text-sm leading-relaxed tracking-normal text-charcoal-black">Mira
+                        Geidt</span>
+
+                </div>
+
+            </li>
+        </ul>
+    </nav>
+
+    <main class="w-section-width h-home-notice-height  flex flex-col gap-8 py-8 px-20 ">
+        <div class="w-container-width h-12 flex justify-between items-center  ">
+            <!-- arrow -->
+            <div class="w-8 h-8 flex items-center cursor-pointer " routerLink="/history">
+
+                <img src="Arrow.png" alt="">
+            </div>
+
+            <span class="w-notice-heading-width h-12 font-poppins font-medium text-[32px] leading-none text-center text-dark-gray flex items-center">Notice from Mira Geidt</span>
+            <div class="w-28 h-6 rounded-full border border-royal-blue flex items-center gap-2 py-1 px-3 bg-pale-blue">
+                <span class="w-23 h-5 font-poppins font-medium text-sm leading-5 tracking-[0.1px] text-royal-blue cursor-pointer">Downloaded</span>
+            </div>
+        </div>
+
+        <section class="w-container-width h-section-height p-4 flex gap-6 rounded-lg  bg-lavender-gray">
+            <div class="w-content-block-width h-content-block-height  bg-white flex gap-1.5 py-4 pl-4 pr-1 overflow-y-auto scrollbar-custom">
+                <p class="w-notice-width h-notice-height text-black font-poppins font-normal  text-base leading-normal tracking-normal ">Date: 10 January 2025
+
+To, Mr. Ramesh Kumar Flat No. 302, Sai Residency MG Road, Andheri East Mumbai – 400069
+
+Subject: Legal Notice for Non-Payment of Dues under Section 420 of the Indian Penal Code
+Dear Sir,
+
+Under instructions from and on behalf of my client Mr. Arjun Mehta, residing at Flat No. 1204, Lotus Heights, Powai, Mumbai – 400076, I hereby serve you with the present legal notice as follows:
+That my client states that on 15 September 2024, you had entered into a business arrangement with my client for the supply of electronic goods.
+That it has come to my client’s knowledge that despite receiving the said goods, you have failed to make the agreed payment of ₹2,50,000 (Rupees Two Lakh Fifty Thousand only), thereby committing a breach of trust and dishonest conduct.
+That despite repeated reminders and follow-ups, you have neglected and failed to clear the outstanding amount, causing financial loss and mental distress to my client.
+That my client reserves the right to initiate appropriate civil and criminal proceedings against you at your own risk, cost, and consequences, should you fail to comply with the demands stated herein.
+Therefore, through this notice, you are hereby called upon to:
+Pay the outstanding amount of ₹2,50,000 (Rupees Two Lakh Fifty Thousand only)
+Within 15 days from the date of receipt of this notice
+Failing which, my client shall be constrained to initiate appropriate legal proceedings against you without any further reference, for which you shall be solely responsible.
+This notice is issued to you without prejudice to all other legal rights and remedies available to my client under law.
+
+Yours faithfully,
+Adv. Neha Sharma Sharma & Associates 2nd Floor, Sterling Chambers Fort, Mumbai – 400001 Contact: +91 98XXXXXXX.
+
+
+</p>
+
+            </div>
+
+        </section>
+
+        <div class="w-[970px] h-16  flex gap-6 rounded-lg ">
+            <button class="w-button-div h-16  rounded-lg border-2 border-steel-blue flex items-center justify-center gap-2 opacity-30 py-4 px-4.5 ">
+                <div class="w-6 h-6  flex items-center justify-center ">
+                    <img src="images/Regenerate.png" alt="">
+                </div>
+                <span
+                    class="w-40 h-5 font-inter font-semibold text-[18px] leading-none text-center cursor-pointer ">Regenerate
+                    Notice</span>
+            </button>
+
+            <div class="w-button-div h-16 rounded-lg flex relative overflow-visible z-5">
+                    <button
+                    class="w-download-button h-16 rounded-l-lg border-r-[1.07px] border-r-white py-4 px-4.5 bg-button flex gap-4 items-center justify-center cursor-pointer">
+                    <img src="Download.png" alt="" class="w-4 h-5">
+                    <span
+                        class="w-36 h-5  font-inter font-semibold text-[18px] leading-none  text-white">Download
+                        Again</span>
+                </button>
+                
+                <button class="w-nav-items h-[63.5px]  rounded-r-lg py-4 px-6 gap-[5.35px]  bg-button cursor-pointer" (click)="toggleMenu()">
+                         <img src="DropDown.png" alt="" class="w-6 h-4">
+                </button>
+
+                @if(showMenu())
+                {
+                <div  class="w-full h-40 bg-steel-blue rounded-lg p-2 absolute bottom-full z-50">
+            <div class="w-dropdown-width h-36   ">
+                <div class="w-dropdown-width h-12 border-b border-b-blue-gray-light flex gap-2 py-2 px-4 ">
+                    <span class="w-24 h-6 text-white">Pdf</span>
+                </div>
+
+                <div class="w-dropdown-width h-12 border-b border-b-blue-gray-light flex gap-2 py-2 px-4">
+                    <span class="w-24 h-6 text-white">PNG</span>
+                </div>
+
+                <div class="w-dropdown-width h-12 flex gap-2 py-2 px-4">
+                    <span class="w-24 h-6 text-white">PNG</span>
+                </div>
+            </div>
+
+        </div>
+                }
+                 
+            </div>
+
+        </div>
+
+    </main>
+
+
+</div>

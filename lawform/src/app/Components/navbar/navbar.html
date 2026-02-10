@@ -4,17 +4,17 @@
         <div class="w-full h-44 gap-4">
             <ul class="text-white">
 
-                <li class="flex  font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4 rounded"  routerLinkActive="bg-button">
+                <li class="flex  font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4 rounded cursor-pointer"  [class.bg-button]="isHomeActive()" routerLink="/home">
                     <img src="NavHomeIcon.png" alt="HomeIcon" class="w-5 h-5">
-                    <a routerLink="/home" >Home</a>
+                    <span >Home</span>
                 </li>
-                <li class="flex font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4" routerLinkActive="bg-button">
+                <li class="flex font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4 cursor-pointer" [class.bg-button]="isHistoryActive()" routerLink="/history">
                     <img src="NavTimerIcon.png" alt="HomeIcon" class="w-5 h-5">
-                    <a routerLink="/history" >History</a>
+                    <span >History</span>
                 </li>
-                <li class="flex  font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4"routerLinkActive="bg-button">
+                <li class="flex  font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4 cursor-pointer"routerLinkActive="bg-button" routerLink="/template-management">
                     <img src="NavNotebookIcon.png" alt="HomeIcon" class="w-5 h-5">
-                    <a routerLink="/template-management" >Templet management</a>
+                    <span >Templet management</span>
                 </li>
             </ul>
 

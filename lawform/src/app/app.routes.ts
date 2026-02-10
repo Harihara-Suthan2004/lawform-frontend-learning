@@ -5,9 +5,14 @@ import { History } from './Pages/history/history';
 import { DownloadedNotice } from './Pages/downloaded-notice/downloaded-notice';
 import { TemplateManagement } from './Pages/template-management/template-management';
 import { CreatedNotice } from './Pages/created-notice/created-notice';
+import { Welcome } from './Pages/welcome/welcome';
 export const routes: Routes = [
     {
         path:'',
+        component:Welcome
+    },
+    {
+        path:'app',
         component:Layout,
         children:[
             {

@@ -12,15 +12,12 @@ export class Navbar {
   isHomeActive(): boolean {
     const url = this.router.url;
    
-    return url === '/home' || url === '/create-notice' || url === '/generated';
+    return url === '/app/home' || url === '/app/create-notice' || url === '/app/generated';
   }
 
    isHistoryActive(): boolean {
     const url = this.router.url;
    
-    return url === '/history' || url === '/downloaded';
+    return url === '/app/history' || url === '/app/downloaded';
   }
-
-  
-
 }

@@ -3,11 +3,14 @@
         <div class="w-header-text-width h-12 gap-2">
             <span class="font-poppins font-semibold text-3xl leading-none">{{title}}</span>
         </div>
-        <div class="w-header-text-width h-10 flex justify-between">
-            <div class="w-72 h-10 gap-2">
-
-            </div>
-            <div class="w-40 h-10 rounded-full flex items-center justify-center bg-light-gray p-2 gap-2">
+        <div class="w-header-text-width h-10 flex justify-end gap-3">
+            <button
+        (click)="openModal()"
+        class="flex justify-around border w-24 h-8 rounded-lg font-inter font-semibold text-base items-center bg-button text-white hover:bg-blue-700 transition-colors"
+    >
+        Login
+    </button>
+            <div class="w-40 h-10 rounded-full flex items-center justify-center bg-light-gray p-2 gap-2 ">
                 <img src="loginProfile.jpg" alt="login profile"
                     class="w-6 h-6 rounded-3xl  gap-0.5 border-0">
                 <div class="w-20 h-7 flex flex-col gap-1">
@@ -21,3 +24,91 @@
 
     </div>
 </div>
+
+ @if (isModalOpen()) {
+  <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center backdrop-blur-sm">
+    <div
+      class="bg-white w-login-width h-login-height rounded-lg shadow-2xl p-8 relative flex flex-col  gap-6"
+    >   
+      <button
+        (click)="closeModal()"
+        class="absolute top-4 right-4 text-gray-400 hover:text-charcoal-gray cursor-pointer"
+      >
+        X
+      </button>
+      <div class="text-center space-y-1">
+        <h2 class="font-poppins font-semibold text-3xl text-charcoal-gray">
+          {{ isLoginView() ? 'Login' : 'Reset Password' }}
+        </h2>
+        @if (isLoginView()) {
+          <form class="flex flex-col gap-5 mt-8 text-left">
+            <div class="flex flex-col gap-1.5 ">
+              <label class="font-poppins text-base font-medium text-charcoal-gray"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                
+                class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all"
+              />
+            </div>
+
+            <div class="flex flex-col gap-1.5 ">
+              <label class="font-poppins text-base font-medium text-charcoal-gray">Password</label>
+              <input
+                type="password"
+
+                class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all"
+              />
+
+            </div>
+
+            <button
+              class="w-full h-12 bg-button text-white rounded-lg font-inter font-semibold text-lg hover:bg-hover-blue transition-colors shadow-md cursor-pointer mt-4 "
+            >
+              Login
+            </button>
+            <div class="flex justify-center">
+                <button
+                  type="button"
+                  (click)="toggleView()"
+                  class="text-xs font-inter text-button hover:underline cursor-pointer"
+                >
+                  Forgot Password?
+                </button>
+              </div>
+          </form>
+        }
+        @else {
+           
+    <form class="flex flex-col gap-5 mt-8 w-full text-left">
+      
+      <div class="flex flex-col gap-1.5">
+        <label class="font-poppins text-base font-medium text-charcoal-gray">New Password</label>
+        <input type="password" 
+               class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm text-dark-gray placeholder-gray-400 focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all">
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="font-poppins text-base font-medium text-charcoal-gray">Confirm Password</label>
+        <input type="password" 
+               class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm text-dark-gray placeholder-gray-400 focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all">
+      </div>
+
+      <button class="w-full h-12 bg-button text-white rounded-lg font-inter font-semibold text-lg hover:bg-hover-blue transition-colors shadow-md mt-4 cursor-pointer">
+        Continue
+      </button>
+
+      <div class="flex justify-center mt-1">
+        <button type="button" (click)="toggleView()" class="text-sm font-inter text-medium-gray hover:text-charcoal-gray transition-colors flex items-center gap-2 cursor-pointer font-medium">
+          Back to Login
+        </button>
+      </div>
+
+    </form>
+  
+        }
+      </div>
+    </div>
+  </div>
+}

@@ -19,7 +19,7 @@
     </nav>
 
     <div class="w-section-width h-home-notice-height p-6 flex flex-col gap-8 opacity-100">
-         <div class="w-270 h-116 flex flex-col gap-2.5 opacity-100">
+         <div class="w-homenotice-width  h-116 flex flex-col gap-2.5 opacity-100">
                <div class="w-homenotice-width h-16 flex items-center justify-between px-4 bg-white  rounded-md">
   
   <!-- LEFT TEXT -->
@@ -45,16 +45,19 @@
     <div class="w-homenotice-width h-96 gap-6 mt-5  rounded-lg opacity-100">
 
     <!-- RIGHT SIDE + 2 CARDS PER ROW -->
-<div class="w-full flex justify-end">
-  <div class="grid grid-cols-2 gap-6">
+<div class="w-full">
+  <div class="grid gap-6 
+              grid-cols-[repeat(auto-fit,minmax(350px,1fr))]">
+
+
 
     <!-- CARD 1 -->
-    <div class="w-270 h-96 gap-6 rounded-lg opacity-100">
-      <div class="w-132 h-96 p-4 gap-3 rounded-lg border border-background: #FFFFFF;
+ <div class="w-full max-w-login-width h-96">
+      <div class="w-full h-102 p-4 gap-3 rounded-lg border border-background: #FFFFFF;
  opacity-100">
 
       <div
-  class="w-124 h-30  bg-[#E0E0E0]
+  class="w-full h-30  bg-[#E0E0E0]
          rounded-sm
          flex items-center justify-center
          gap-3 opacity-100"
@@ -109,17 +112,16 @@
   <span class="font-poppins font-semibold text-[16px] leading-[100%] tracking-[0px]">Edit</span>
 </button>
         </div>
-
       </div>
     </div>
 
     <!-- CARD 2 -->
-    <div class="w-270 h-96 gap-6 rounded-lg opacity-100">
-      <div class="w-132 h-96 p-4 gap-3 rounded-lg border border-background: #FFFFFF;
+    <div class="w-full max-w-login-width h-96">
+      <div class="w-full h-102 p-4 gap-3 rounded-lg border border-background: #FFFFFF;
  opacity-100">
 
       <div
-  class="w-124 h-30  bg-[#E0E0E0]
+  class="w-full h-30  bg-[#E0E0E0]
          rounded-sm
          flex items-center justify-center
          gap-3 opacity-100"

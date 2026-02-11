@@ -1,7 +1,7 @@
  <app-header title="Create New Legal Notice"></app-header>
 
  <div class="w-section-width h-12  border-b-muted-gray bg-white flex pr-6 pl-6 gap-6">
-    <div class="flex items-center w-20 h-12  gap-4 border-slate-gray cursor-pointer" routerLink="/app/home">
+    <div class="flex items-center w-20 h-12  gap-4 border-slate-gray cursor-pointer" routerLink="/home">
         <div class="w-8 h-8 p-1 relative gap-2.5">
             <img src="HomePageHeaderIcon.png" alt="Home" class=" w-6 h-6 absolute top-1 left-1">
 
@@ -17,17 +17,19 @@
             <span class="font-poppins font-normal text-sm leading-relaxed text-charcoal-black">Create New Legal Notice</span>
         </div>
 </div>
- <div class="w-homenotice-width mx-auto h-noticelist-width flex flex-col gap-8  mt-6">
-    <div class="w-homenotice-width h-5 flex items-center justify-center">
+<div class="w-full flex flex-col gap-8 mt-6 px-6">
+
+
+    <div class="w-full h-5 flex items-center justify-center">
       <p class="font-poppins font-medium text-2xl">
         Notice Details
       </p>
     </div>
 
-   <div class="bg-lavender-gray w-homenotice-width rounded-lg p-4 flex flex-col gap-2.5 pb-8">
+   <div class="bg-lavender-gray w-full rounded-lg p-4 flex flex-col gap-2.5 pb-8">
 
 
-     <div class="grid grid-cols-2 gap-6 w-full max-w-homenotice-width">
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full max-w-full">
 
 
 
@@ -57,13 +59,13 @@
               <label for="fromEmail" class="font-poppins font-normal text-base leading-6 text-lightergrey">Email</label>
               <input id="fromEmail" type="email" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" value="johndoe@gmail.com" />
             </div>
-            <div class="w-60 flex flex-col gap-2">
+            <div class="w-full flex flex-col gap-2">
               <label for="fromContact" class="font-poppins font-normal text-base leading-6 text-lightergrey">Contact</label>
               <div class="flex gap-2">
                 <select id="fromCountryCode" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900">
                   <option>+91</option>
                 </select>
-                <input id="fromContact" class="w-36 h-10 rounded-md border border-slate-gray px-3 py-2 text-base font-medium font-poppins text-neutral900" value="8623456789" />
+                <input id="fromContact" class="w-full h-10 rounded-md border border-slate-gray px-3 py-2 text-base font-medium font-poppins text-neutral900" value="8623456789" />
               </div>
             </div>
           </div>
@@ -117,13 +119,13 @@
               <label for="fromEmail" class="font-poppins font-normal text-base leading-6 text-lightergrey">Email</label>
               <input id="fromEmail" type="email" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" value="johndoe@gmail.com" />
             </div>
-            <div class="w-60 flex flex-col gap-2">
+            <div class="w-full flex flex-col gap-2">
               <label for="fromContact" class="font-poppins font-normal text-base leading-6 text-lightergrey">Contact</label>
               <div class="flex gap-2">
                 <select id="fromCountryCode" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900">
                   <option>+91</option>
                 </select>
-                <input id="fromContact" class="w-36 h-10 rounded-md border border-slate-gray px-3 py-2 text-base font-medium font-poppins text-neutral900" value="8623456789" />
+                <input id="fromContact" class="w-full h-10 rounded-md border border-slate-gray px-3 py-2 text-base font-medium font-poppins text-neutral900" value="8623456789" />
               </div>
             </div>
           </div>
@@ -156,10 +158,10 @@
       </div>
 
     <!-- Penal Code + Type of Notice (GRID) -->
-<div class="grid grid-cols-2 gap-6 w-short-case-width">
+<div class="grid grid-cols-2 gap-6 w-full">
 
   <!-- Penal Code Section -->
-  <div class="flex flex-col gap-2 w-lg">
+  <div class="flex flex-col gap-2 w-full">
     <label
       for="penalCode"
       class="font-poppins font-normal text-base text-neutral900"
@@ -187,7 +189,7 @@
   </div>
 
   <!-- Type of Notice -->
-  <div class="flex flex-col gap-2 w-lg">
+  <div class="flex flex-col gap-2 w-full">
     <label
       class="font-poppins font-normal text-base text-neutral900"
     >
@@ -223,7 +225,7 @@
 <div
   class="
     flex flex-col opacity-100
-    w-short-case-width h-22
+    w-full h-22
     gap-4
   "
 >
@@ -237,7 +239,7 @@
   <div
     class="
       relative
-      w-short-case-width h-14
+      w-full h-14
       rounded-sm
       border border-slate-gray
       bg-white
@@ -274,9 +276,9 @@
     </div>
   </div>
 
-  <div class="mt-4 flex justify-center">
-
-  <button class="w-homenotice-width h-16 rounded-lg bg-button border-r-2 text-white font-medium mb-2" routerLink="/app/generated">
+   <div class="mt-4 px-6">
+  <button class="w-full h-16 rounded-lg bg-button text-white font-medium mb-2" routerLink="/generated">
+ 
     Generate Notice
   </button>
 </div>

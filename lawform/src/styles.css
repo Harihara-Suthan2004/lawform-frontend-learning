@@ -97,3 +97,31 @@
     display: none;
   }
 }
+
+/* Main layout full screen */
+.w-main-width {
+  width: 100vw !important;
+}
+
+/* Section expands minus sidebar */
+.w-section-width {
+  width: calc(100vw - var(--spacing-sidebar)) !important;
+}
+
+/* Fix inner container that also uses w-section-width */
+div.w-section-width {
+  width: 100% ;
+}
+
+/* Make all internal fixed content stretch */
+.w-homenotice-width,
+.w-container-width,
+.w-historysection-width,
+.w-noticelist-width {
+  width: 100% ;
+}
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}

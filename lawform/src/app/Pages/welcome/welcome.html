@@ -1,4 +1,4 @@
-<main class="w-main-width h-main-height flex flex-col">
+<main class="min-w-main-width max-w-full min-h-main-height max-h-full flex flex-col">
     <!-- header -->
     <section class="h-20 w-full bg-steel-blue  pr-6 pb-4 pl-6 ">
         <ul class="flex justify-between">
@@ -7,12 +7,12 @@
                     <img src="WelcomeLogo.png" alt="welcome logo" class=" w-16 h-16">
                 </div>
                 <div class="flex justify-center items-center w-32 h-20">
-                    <span class=" font-semibold text-3xl leading-none">LawForm</span>
+                    <span class="text-white font-semibold text-3xl leading-none">LawFirm</span>
                 </div>
             </li>
             <li class="flex justify-center items-center">
                 <button (click)="openModal()"
-                    class="flex justify-around border w-24 h-8 rounded-lg font-inter font-semibold text-base items-center bg-black text-white cursor-pointer">
+                    class="flex justify-around border w-24 h-8 rounded-lg font-inter font-semibold text-base items-center bg-white text-button cursor-pointer">
                     Login
                 </button>
             </li>
@@ -99,8 +99,8 @@
 
     <!-- home page section 1 -->
 
-<section class="w-full min-h-[510px] bg-bright-gray overflow-hidden">
-        <div class="flex flex-col md:flex-row min-h-[510px]">
+<section class="w-full min-h-welcome-text-height bg-bright-gray overflow-hidden">
+        <div class="flex flex-col md:flex-row min-h-welcome-text-height">
             
             <div class="w-full md:w-1/2 flex flex-col justify-center pl-6 pr-12 py-12">
                 <div class="space-y-2">
@@ -125,7 +125,7 @@
                 </div>
             </div>
 
-            <div class="w-full md:w-1/2 relative min-h-[400px] md:min-h-full">
+            <div class="w-full md:w-1/2 relative min-h-welcome-img-height md:min-h-full">
                 <img src="WelcomeSection1.jpg" alt="Legal Professional" 
                      class="w-full h-full object-cover rounded-bl-none md:rounded-bl-[200px] shadow-2xl">
                 <div class="absolute inset-0 bg-steel-blue/10 md:rounded-bl-[200px]"></div>
@@ -210,7 +210,7 @@
             <div class="flex flex-col gap-6 w-full md:w-1/3">
                 <div class="flex items-center gap-3">
                     <img src="WelcomeLogo.png" alt="LawForm logo" class="w-10 h-10">
-                    <span class="font-semibold text-2xl font-poppins text-white">LawForm</span>
+                    <span class="font-semibold text-2xl font-poppins text-white">LawFirm</span>
                 </div>
                 <p class="text-sm font-inter text-slate-300 leading-relaxed max-w-xs">
                     Highly accurate, and secure legal document generation for professionals.

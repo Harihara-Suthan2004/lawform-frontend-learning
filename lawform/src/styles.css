@@ -74,7 +74,12 @@
         --color-platinum:#DFDFDF;
         --color-dim-gray:#5A5A5A80;
         --color-navy-blue:#000A16B2;
-        --color-lightergrey:'#000A1666';
+        --color-lightergrey:#000A1666;
+        --color-input-border:#D9D9D9;
+        --color-form-input:#00000026;
+        --color-card-border:#00000040;
+        --color-card-text:#6D6D6D;
+        --color-edit-button:#081541;
 
         /* font family */
         --font-poppins: 'Poppins', sans-serif;

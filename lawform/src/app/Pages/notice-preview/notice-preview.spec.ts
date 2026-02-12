@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreatedNotice } from './created-notice';
+import { NoticePreview } from './notice-preview';
 
-describe('CreatedNotice', () => {
-  let component: CreatedNotice;
-  let fixture: ComponentFixture<CreatedNotice>;
+describe('NoticePreview', () => {
+  let component: NoticePreview;
+  let fixture: ComponentFixture<NoticePreview>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreatedNotice]
+      imports: [NoticePreview]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CreatedNotice);
+    fixture = TestBed.createComponent(NoticePreview);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

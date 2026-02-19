@@ -1,30 +1,13 @@
-import { Component,signal,inject } from '@angular/core';
-import { RouterLink,Router } from "@angular/router";
+import { Component } from '@angular/core';
+import { Login } from '../../Components/login/login';
 
 @Component({
   selector: 'app-welcome',
-  imports: [RouterLink],
+  imports: [Login],
   templateUrl: './welcome.html',
   styleUrl: './welcome.css',
 })
 export class Welcome {
-  private router = inject(Router);
-   isModalOpen = signal(false);
-   isLoginView = signal(true);
-  openModal(){
-    this.isModalOpen.set(true);
-    this.isLoginView.set(true);
-   }
-   closeModal(){
-    this.isModalOpen.set(false);
-   }
-
-   toggleView(){
-    this.isLoginView.update(value => !value);
-   }
-   handleLogin(){
-    this.closeModal();
-    this.router.navigate(['/app/home']);
-   }
+ 
 
 }

@@ -1,10 +1,10 @@
 import { Component, Input, signal } from '@angular/core';
-import { RouterLink } from "@angular/router";
 import { Profile } from '../profile/profile';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink,Profile],
+  imports: [Profile,RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

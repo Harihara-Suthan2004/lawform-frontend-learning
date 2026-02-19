@@ -4,12 +4,12 @@ import { Header } from '../../Components/header/header';
 import { RouterLink } from "@angular/router";
 
 @Component({
-  selector: 'app-created-notice',
+  selector: 'app-notice-preview',
   imports: [CommonModule, Header, RouterLink],
-  templateUrl: './created-notice.html',
-  styleUrl: './created-notice.css',
+  templateUrl: './notice-preview.html',
+  styleUrl: './notice-preview.css',
 })
-export class CreatedNotice {
+export class NoticePreview {
  showMenu = signal(false);
 
   toggleMenu(){

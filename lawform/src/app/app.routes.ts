@@ -4,8 +4,8 @@ import { Home } from './Pages/home/home';
 import { History } from './Pages/history/history';
 import { DownloadedNotice } from './Pages/downloaded-notice/downloaded-notice';
 import { TemplateManagement } from './Pages/template-management/template-management';
-import { CreatedNotice } from './Pages/created-notice/created-notice';
 import { Welcome } from './Pages/welcome/welcome';
+import { NoticePreview } from './Pages/notice-preview/notice-preview';
 export const routes: Routes = [
     {
         path:'',
@@ -38,7 +38,7 @@ export const routes: Routes = [
             },
             {
               path:'generated',
-              component:CreatedNotice
+              component:NoticePreview
             },
             {
                 path:'',

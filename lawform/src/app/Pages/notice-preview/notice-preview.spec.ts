@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Navbar } from './navbar';
+import { NoticePreview } from './notice-preview';
 
-describe('Navbar', () => {
-  let component: Navbar;
-  let fixture: ComponentFixture<Navbar>;
+describe('NoticePreview', () => {
+  let component: NoticePreview;
+  let fixture: ComponentFixture<NoticePreview>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Navbar]
+      imports: [NoticePreview]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Navbar);
+    fixture = TestBed.createComponent(NoticePreview);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

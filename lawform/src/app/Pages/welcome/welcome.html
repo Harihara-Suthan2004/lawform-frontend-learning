@@ -11,91 +11,15 @@
                 </div>
             </li>
             <li class="flex justify-center items-center">
-                <button (click)="openModal()"
-                    class="flex justify-around border w-24 h-8 rounded-lg font-inter font-semibold text-base items-center bg-white text-button cursor-pointer">
-                    Login
-                </button>
+                
+                <app-login></app-login>
             </li>
         </ul>
 
     </section>
 
-    <!-- login section -->
-    @if (isModalOpen()) {
-    <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center backdrop-blur-sm">
-        <div class="bg-white w-login-width h-login-height rounded-lg shadow-2xl p-8 relative flex flex-col  gap-6">
-            <button (click)="closeModal()"
-                class="absolute top-4 right-4 text-gray-400 hover:text-charcoal-gray cursor-pointer">
-                X
-            </button>
-            <div class="text-center space-y-1">
-                <h2 class="font-poppins font-semibold text-3xl text-charcoal-gray">
-                    {{ isLoginView() ? 'Login' : 'Reset Password' }}
-                </h2>
-                @if (isLoginView()) {
-                <form class="flex flex-col gap-5 mt-8 text-left">
-                    <div class="flex flex-col gap-1.5 ">
-                        <label class="font-poppins text-base font-medium text-charcoal-gray">Email Address</label>
-                        <input type="email"
-                            class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all" />
-                    </div>
-
-                    <div class="flex flex-col gap-1.5 ">
-                        <label class="font-poppins text-base font-medium text-charcoal-gray">Password</label>
-                        <input type="password"
-                            class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all" />
-
-                    </div>
-
-                    <button
-                        type="button"
-                        (click)="handleLogin()"
-                        class="w-full h-12 bg-button text-white rounded-lg font-inter font-semibold text-lg hover:bg-hover-blue transition-colors shadow-md cursor-pointer mt-4 ">
-                        Login
-                    </button>
-                    <div class="flex justify-center">
-                        <button type="button" (click)="toggleView()"
-                            class="text-xs font-inter text-button hover:underline cursor-pointer">
-                            Forgot Password?
-                        </button>
-                    </div>
-                </form>
-                }
-                @else {
-
-                <form class="flex flex-col gap-5 mt-8 w-full text-left">
-
-                    <div class="flex flex-col gap-1.5">
-                        <label class="font-poppins text-base font-medium text-charcoal-gray">New Password</label>
-                        <input type="password"
-                            class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm text-dark-gray placeholder-gray-400 focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all">
-                    </div>
-
-                    <div class="flex flex-col gap-1.5">
-                        <label class="font-poppins text-base font-medium text-charcoal-gray">Confirm Password</label>
-                        <input type="password"
-                            class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm text-dark-gray placeholder-gray-400 focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all">
-                    </div>
-
-                    <button
-                        class="w-full h-12 bg-button text-white rounded-lg font-inter font-semibold text-lg hover:bg-hover-blue transition-colors shadow-md mt-4 cursor-pointer">
-                        Continue
-                    </button>
-
-                    <div class="flex justify-center mt-1">
-                        <button type="button" (click)="toggleView()"
-                            class="text-sm font-inter text-medium-gray hover:text-charcoal-gray transition-colors flex items-center gap-2 cursor-pointer font-medium">
-                            Back to Login
-                        </button>
-                    </div>
-
-                </form>
-
-                }
-            </div>
-        </div>
-    </div>
-    }
+   
+   
 
     <!-- home page section 1 -->
 
@@ -113,15 +37,16 @@
                 <div class="mt-8 max-w-xl">
                     <p class="font-medium font-inter text-midnight-gray text-lg leading-relaxed">
                         Secure, Compliant, and Accurate Legal Document Solutions. 
-                        LawForm is built to maintain trust through encrypted document generation 
+                        lawfirm is built to maintain trust through encrypted document generation 
                         and strictly validated templates.
                     </p>
                 </div>
 
                 <div class="mt-10">
-                    <button (click)="openModal()" class="px-10 py-4 bg-white text-steel-blue font-bold rounded-lg shadow-lg hover:bg-bright-gray transition-all cursor-pointer">
+                    <!-- <button  class="px-10 py-4 bg-white text-steel-blue font-bold rounded-lg shadow-lg hover:bg-bright-gray transition-all cursor-pointer">
                         Get Started Now
-                    </button>
+                    </button> -->
+
                 </div>
             </div>
 
@@ -143,7 +68,7 @@
     </h2>
 
     <p class="mt-8 text-lg md:text-xl text-midnight-gray font-inter max-w-3xl text-center leading-relaxed">
-        LawForm streamlines the complex landscape of legal documentation by providing 
+        lawfirm streamlines the complex landscape of legal documentation by providing 
         enterprise-grade automation for professionals. We bridge the gap between 
         manual drafting and digital precision, offering a secure environment where 
         compliance and accuracy are built into every template. Our mission is to 
@@ -209,7 +134,7 @@
             
             <div class="flex flex-col gap-6 w-full md:w-1/3">
                 <div class="flex items-center gap-3">
-                    <img src="WelcomeLogo.png" alt="LawForm logo" class="w-10 h-10">
+                    <img src="WelcomeLogo.png" alt="lawfirm logo" class="w-10 h-10">
                     <span class="font-semibold text-2xl font-poppins text-white">LawFirm</span>
                 </div>
                 <p class="text-sm font-inter text-slate-300 leading-relaxed max-w-xs">

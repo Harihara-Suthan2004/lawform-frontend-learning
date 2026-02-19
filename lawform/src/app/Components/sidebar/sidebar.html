@@ -1,3 +1,36 @@
+<!-- Admin Sidebar - Only Users menu -->
+@if (isAdmin()) {
+<section class="w-76 h-main-height p-6 items-center justify-between bg-steel-blue text-white">
+    <div class="w-64 h-64 gap-10 flex flex-col items-center">
+        <span class="text-2xl font-poppins font-medium leading-none">Logo</span>
+        <div class="w-full h-44 gap-4">
+            <ul class="text-white">
+                <!-- Users - Only menu for Admin -->
+                <!-- <li class="flex font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4 rounded cursor-pointer" 
+                    routerLinkActive="bg-button" 
+                    routerLink="/app/users">
+                    <img src="NavUsersIcon.png" alt="UsersIcon" class="w-5 h-5">
+                    <span>Users</span>
+                </li> -->
+                <li class="flex  font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4 rounded cursor-pointer"  routerLinkActive="bg-button" routerLink="/app/users">
+                    <img src="NavHomeIcon.png" alt="UsersIcon" class="w-5 h-5">
+                    <span >Users</span>
+                </li>
+
+                <!-- Logout - Common for both -->
+                <!-- <li class="flex font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4 rounded cursor-pointer text-red-300 hover:text-red-100 mt-8"
+                    (click)="logout()">
+                    <img src="NavLogoutIcon.png" alt="LogoutIcon" class="w-5 h-5">
+                    <span>Logout</span>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</section>
+}
+
+<!-- User Sidebar - Original sidebar with Home, History, Template Management -->
+@if (isUser()) {
 <section class="w-76 h-main-height p-6 items-center justify-between bg-steel-blue text-white">
     <div class="w-64 h-64 gap-10 flex flex-col items-center">
         <span class="text-2xl font-poppins font-medium leading-none">Logo</span>
@@ -16,8 +49,15 @@
                     <img src="NavNotebookIcon.png" alt="HomeIcon" class="w-5 h-5">
                     <span >Templet management</span>
                 </li>
-            </ul>
 
+                <!-- Logout - Common for both -->
+                <!-- <li class="flex font-poppins font-semibold text-base pt-3 pr-4 pb-3 pl-4 gap-4 rounded cursor-pointer text-red-300 hover:text-red-100 mt-8"
+                    (click)="logout()">
+                    <img src="NavNotebookIcon.png" alt="LogoutIcon" class="w-5 h-5">
+                    <span>Logout</span>
+                </li> -->
+            </ul>
         </div>
     </div>
 </section>
+}

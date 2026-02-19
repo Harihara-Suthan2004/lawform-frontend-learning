@@ -6,52 +6,64 @@ import { DownloadedNotice } from './Pages/downloaded-notice/downloaded-notice';
 import { TemplateManagement } from './Pages/template-management/template-management';
 import { Welcome } from './Pages/welcome/welcome';
 import { NoticePreview } from './Pages/notice-preview/notice-preview';
+import { Users } from './Pages/users/users';
+import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/auth.guard';
+
 export const routes: Routes = [
     {
-        path:'',
-        component:Welcome
+        path: '',
+        component: Welcome
     },
     {
-        path:'app',
-        component:Layout,
-        children:[
+        path: 'app',
+        component: Layout,
+        canActivate: [authGuard],
+        children: [
             {
-                path:'home',
-                component:Home
+                path: 'users',
+                component: Users,
+                canActivate: [adminGuard] // Only admin can access
             },
             {
-                path:'history',
-                component:History
+                path: 'home',
+                component: Home,
+                canActivate: [authGuard] // Only regular users (but guard will check)
             },
             {
-                path:'downloaded',
-                component:DownloadedNotice
+                path: 'history',
+                component: History,
+                canActivate: [authGuard]
             },
             {
-        path: 'template-management',
-        component: TemplateManagement,
-        data: { title: 'Template management' },
-      },
-      {
-            path:'create-notice', // Add this new path
-                loadComponent: () => import('./Pages/create-notice/create-notice').then(m => m.CreateNotice)
+                path: 'downloaded',
+                component: DownloadedNotice,
+                canActivate: [authGuard]
             },
             {
-              path:'generated',
-              component:NoticePreview
+                path: 'template-management',
+                component: TemplateManagement,
+                canActivate: [authGuard]
             },
             {
-                path:'',
-                redirectTo:'home',
-                pathMatch:'full'
-
+                path: 'create-notice',
+                loadComponent: () => import('./Pages/create-notice/create-notice').then(m => m.CreateNotice),
+                canActivate: [authGuard]
             },
-
+            {
+                path: 'generated',
+                component: NoticePreview,
+                canActivate: [authGuard]
+            },
+            {
+                path: '',
+                redirectTo: 'home',
+                pathMatch: 'full'
+            }
         ]
     },
     {
-        path:'**',
-        redirectTo:''
-    
+        path: '**',
+        redirectTo: ''
     }
 ];

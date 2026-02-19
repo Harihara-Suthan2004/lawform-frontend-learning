@@ -8,59 +8,108 @@
   </button>
 </div>
 
+<!-- Login Modal -->
 @if (isModalOpen()) {
   <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center backdrop-blur-sm">
-    <div
-      class="bg-white w-login-width h-login-height rounded-lg shadow-2xl p-8 relative flex flex-col gap-6"
-    >
+    
+    <!-- ✅ Only width increased from w-96 to w-[450px] -->
+    <div class="bg-white w-[450px] rounded-lg shadow-2xl p-8 relative">
+      
+      <!-- Close button -->
       <button
         (click)="closeModal()"
-        class="absolute top-4 right-4 text-gray-400 hover:text-charcoal-gray cursor-pointer"
+        class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 cursor-pointer text-xl font-bold"
       >
-        X
+        ✕
       </button>
-      <div class="text-center space-y-1">
+      
+      <div class="text-center mb-6">
         <h2 class="font-poppins font-semibold text-3xl text-charcoal-gray">
-          {{ isLoginView() ? 'Login' : 'Reset Password' }}
+          {{ isLoginView() ? 'Welcome Back' : 'Reset Password' }}
         </h2>
-        @if (isLoginView()) {
-          <form class="flex flex-col gap-5 mt-8 text-left">
-            <div class="flex flex-col gap-1.5">
-              <label class="font-poppins text-base font-medium text-charcoal-gray"
-                >Email Address</label
-              >
+      </div>
+      
+      <!-- ERROR MESSAGE -->
+      @if (errorMessage()) {
+        <div style="
+          background-color: #ffebee !important;
+          border: 3px solid #f44336 !important;
+          color: #c62828 !important;
+          padding: 16px !important;
+          margin: 0 0 20px 0 !important;
+          border-radius: 8px !important;
+          text-align: center !important;
+          font-weight: bold !important;
+          font-size: 16px !important;
+          display: block !important;
+          z-index: 9999 !important;
+        ">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      @if (isLoginView()) {
+        <form (ngSubmit)="handleLogin()">
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            
+            <!-- Email Field -->
+            <div>
+              <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 5px;">
+                Email Address
+              </label>
               <input
                 type="email"
-                class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all"
+                [ngModel]="email()"
+                (ngModelChange)="email.set($event)"
+                name="email"
+                required
+                style="width: 100%; height: 44px; border: 1px solid #ccc; border-radius: 8px; padding: 0 15px; font-size: 14px;"
+                placeholder="Enter your email"
+                [disabled]="isLoading()"
               />
             </div>
 
-            <div class="flex flex-col gap-1.5">
-              <label class="font-poppins text-base font-medium text-charcoal-gray">Password</label>
+            <!-- Password Field -->
+            <div>
+              <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 5px;">
+                Password
+              </label>
               <input
                 type="password"
-                class="w-full h-12 border border-silver-gray rounded-lg px-4 font-inter text-sm focus:outline-none focus:border-button focus:ring-1 focus:ring-button transition-all"
+                [ngModel]="password()"
+                (ngModelChange)="password.set($event)"
+                name="password"
+                required
+                style="width: 100%; height: 44px; border: 1px solid #ccc; border-radius: 8px; padding: 0 15px; font-size: 14px;"
+                placeholder="Enter your password"
+                [disabled]="isLoading()"
               />
             </div>
 
-            <button
-              type="button"
-              (click)="handleLogin()"
-              class="w-full h-12 bg-button text-white rounded-lg font-inter font-semibold text-lg hover:bg-hover-blue transition-colors shadow-md cursor-pointer mt-4"
-            >
-              Login
-            </button>
-            <div class="flex justify-center">
+            <!-- Forgot Password Link -->
+            <div style="text-align: right;">
               <button
                 type="button"
                 (click)="toggleView()"
-                class="text-xs font-inter text-button hover:underline cursor-pointer"
+                style="font-size: 12px; color: #0066cc; background: none; border: none; cursor: pointer;"
+                [disabled]="isLoading()"
               >
-                Forgot Password?
+                Forgot password?
               </button>
             </div>
-          </form>
-        } @else {
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              [disabled]="isLoading()"
+              style="width: 100%; height: 44px; background-color: #0066cc; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;"
+            >
+              {{ isLoading() ? 'Logging in...' : 'Sign In' }}
+            </button>
+
+          </div>
+        </form>
+      }    @else {
           <form class="flex flex-col gap-5 mt-8 w-full text-left">
             <div class="flex flex-col gap-1.5">
               <label class="font-poppins text-base font-medium text-charcoal-gray"
@@ -99,7 +148,7 @@
             </div>
           </form>
         }
-      </div>
+      
     </div>
   </div>
 }

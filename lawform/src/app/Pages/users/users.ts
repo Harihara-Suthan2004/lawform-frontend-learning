@@ -29,8 +29,8 @@ import { UserService } from '../../services/user.service';
 })
 export class Users implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['Username', 'Email', 'Role', 'Status', 'Actions'];
-  dataSource = new MatTableDataSource<APIdatas>([]);
+  displayedColumns: string[] = ['Username', 'Email', 'Role', 'Status'];
+  dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -38,7 +38,6 @@ export class Users implements OnInit, AfterViewInit {
 
   constructor(private userService: UserService) {}
 
-  // ✅ API call here
   ngOnInit(): void {
     this.loadUsers();
   }
@@ -50,6 +49,7 @@ export class Users implements OnInit, AfterViewInit {
   loadUsers() {
     this.userService.getUsers().subscribe({
       next: (response) => {
+        console.log('API Response:', response);
 
         if (!response?.dashboard_data?.users) {
           console.error('Invalid API response');
@@ -57,16 +57,18 @@ export class Users implements OnInit, AfterViewInit {
         }
 
         const users = response.dashboard_data.users;
+        console.log('Users array:', users);
 
+        // Map the data correctly - ensure property names match
         const formattedUsers = users.map((user: any) => ({
           id: user.id,
-          Username: user.username,
-          Email: user.email,
-          Role: user.role,
-          Status: user.is_active ? 'active' : 'inactive',
-          CreatedAt: ''
+          Username: user.username || '',
+          Email: user.email || '',
+          Role: user.role || 'user',
+          Status: user.is_active ? 'active' : 'inactive'
         }));
 
+        console.log('Formatted users:', formattedUsers);
         this.dataSource.data = formattedUsers;
       },
       error: (error) => {
@@ -88,14 +90,6 @@ export class Users implements OnInit, AfterViewInit {
     }
   }
 
-  editUser(id: string) {
-    console.log('Edit user:', id);
-  }
-
-  deleteUser(id: string) {
-    console.log('Delete user:', id);
-  }
-
   openAddUserModal() {
     this.showAddUserModal = true;
   }
@@ -105,15 +99,6 @@ export class Users implements OnInit, AfterViewInit {
   }
 
   onUserAdded(response: any) {
-    this.loadUsers(); // refresh after adding user
+    this.loadUsers();
   }
-}
-
-export interface APIdatas {
-  id: string;
-  Username: string;
-  Email: string;
-  Role: string;
-  Status: string;
-  CreatedAt: string;
 }

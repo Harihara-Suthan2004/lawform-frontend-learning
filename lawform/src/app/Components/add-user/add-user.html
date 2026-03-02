@@ -1,99 +1,106 @@
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
 
-  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+  <!-- MODAL BOX - Same size as Create Template modal (w-130) -->
+  <div class="w-130 bg-white rounded-lg p-6 shadow-lg">
 
-    <!-- MODAL BOX - Same size as Create Template modal (w-130) -->
-    <div class="w-130 bg-white rounded-lg p-6 shadow-lg">
+    <!-- TITLE -->
+    <h2 class="mb-4 font-poppins font-medium text-2xl leading-normal tracking-normal">
+      Add New User
+    </h2>
 
-      <!-- TITLE -->
-      <h2 class="mb-4 font-poppins font-medium text-2xl leading-normal tracking-normal">
-        Add New User
-      </h2>
-
-      <!-- USERNAME INPUT -->
-      <label for="username" class="block mb-1 font-poppins text-lightergrey font-normal text-lg leading-normal tracking-normal">
-        Username *
-      </label>
-      <input
-        id="username"
-        type="text"
-        [(ngModel)]="newUser.username"
-        name="username"
-        placeholder="Enter username"
-        class="w-full border rounded px-3 py-2 mb-4 font-poppins"
-        [disabled]="isSaving"
-      />
-
-      <!-- EMAIL INPUT -->
-      <label for="email" class="block mb-1 font-poppins text-lightergrey font-normal text-lg leading-normal tracking-normal">
-        Email *
-      </label>
-      <input
-        id="email"
-        type="email"
-        [(ngModel)]="newUser.email"
-        name="email"
-        placeholder="Enter email"
-        class="w-full border rounded px-3 py-2 mb-4 font-poppins"
-        [disabled]="isSaving"
-      />
-
-      <!-- PASSWORD INPUT -->
-      <label for="password" class="block mb-1 font-poppins text-lightergrey font-normal text-lg leading-normal tracking-normal">
-        Password *
-      </label>
-      <input
-        id="password"
-        type="password"
-        [(ngModel)]="newUser.password"
-        name="password"
-        placeholder="Enter password (min 6 characters)"
-        class="w-full border rounded px-3 py-2 mb-4 font-poppins"
-        [disabled]="isSaving"
-      />
-
-      <!-- ROLE SELECTION -->
-      <label for="role" class="block mb-1 font-poppins text-lightergrey font-normal text-lg leading-normal tracking-normal">
-        Role *
-      </label>
-      <select
-        id="role"
-        [(ngModel)]="newUser.role"
-        name="role"
-        class="w-full border rounded px-3 py-2 mb-4 font-poppins"
-        [disabled]="isSaving"
-      >
-        <option value="" disabled selected>Select Role</option>
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
-
-      <!-- ERROR MESSAGE -->
-      @if (errorMessage) {
-        <div class="bg-red-100 border border-red-400 text-red-700 px-3 py-2 rounded mb-4 text-sm">
-          {{ errorMessage }}
-        </div>
-      }
-
-      <!-- ACTION BUTTONS - Same as Create Template modal -->
-      <div class="flex justify-end gap-4">
-        <button
-          type="button"
-          class="text-button font-poppins font-semibold text-base leading-none tracking-normal"
-          (click)="closeModal()"
-          [disabled]="isSaving"
-        >
-          Cancel
-        </button>
-
-        <button
-          type="button"
-          (click)="saveUser()"
-          [disabled]="isSaving || !newUser.username || !newUser.email || !newUser.password || !newUser.role"
-          class="bg-button text-white font-poppins font-semibold text-base leading-normal tracking-normal w-16 h-10 px-3 py-2 gap-0.5 rounded-sm opacity-100 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {{ isSaving ? 'Save' : 'Save' }}
-        </button>
-      </div>
-
+    <!-- USERNAME INPUT -->
+    <label for="username"
+      class="block mb-1 font-poppins text-lightergrey font-normal text-lg leading-normal tracking-normal">
+      Username *
+    </label>
+    <input id="username" type="text" [(ngModel)]="newUser.username" (ngModelChange)="onUsernameChange()" name="username"
+      placeholder="Enter username (letters, numbers, underscore only)"
+      class="w-full border rounded px-3 py-2 mb-1 font-poppins" [class.border-red-500]="usernameError"
+      [disabled]="isSaving" />
+    <!-- Username error message -->
+    @if (usernameError) {
+    <div class="text-red-500 text-xs mb-3 font-poppins">
+      {{ usernameError }}
     </div>
+    }
+
+    <!-- EMAIL INPUT -->
+    <label for="email"
+      class="block mb-1 font-poppins text-lightergrey font-normal text-lg leading-normal tracking-normal">
+      Email *
+    </label>
+    <input id="email" type="email" [(ngModel)]="newUser.email" (ngModelChange)="onEmailChange()" name="email"
+      placeholder="Enter email (e.g., name@example.com)" class="w-full border rounded px-3 py-2 mb-1 font-poppins"
+      [class.border-red-500]="emailError" [disabled]="isSaving" />
+    <!-- Email error message -->
+    @if (emailError) {
+    <div class="text-red-500 text-xs mb-3 font-poppins">
+      {{ emailError }}
+    </div>
+    }
+
+    <!-- PASSWORD INPUT -->
+    <label for="password"
+      class="block mb-1 font-poppins text-lightergrey font-normal text-lg leading-normal tracking-normal">
+      Password *
+    </label>
+    <input id="password" type="password" [(ngModel)]="newUser.password" (ngModelChange)="onPasswordChange()"
+      name="password" placeholder="Enter password (min 8 characters)"
+      class="w-full border rounded px-3 py-2 mb-1 font-poppins" [class.border-red-500]="passwordError"
+      [disabled]="isSaving" />
+    <!-- Password error message -->
+    @if (passwordError) {
+    <div class="text-red-500 text-xs mb-3 font-poppins">
+      {{ passwordError }}
+    </div>
+    }
+
+    <!-- Password requirements hint (optional) -->
+    @if (newUser.password && !passwordError) {
+    <div class="text-xs text-gray-500 mb-3 font-poppins">
+      Password must contain: uppercase, lowercase, number, and special character
+    </div>
+    }
+
+    <!-- ROLE SELECTION -->
+    <label for="role"
+      class="block mb-1 font-poppins text-lightergrey font-normal text-lg leading-normal tracking-normal">
+      Role *
+    </label>
+    <select id="role" [(ngModel)]="newUser.role" (ngModelChange)="onRoleChange()" name="role"
+      class="w-full border rounded px-3 py-2 mb-1 font-poppins" [class.border-red-500]="roleError"
+      [disabled]="isSaving">
+      <option value="" disabled selected>Select Role</option>
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+    <!-- Role error message -->
+    @if (roleError) {
+    <div class="text-red-500 text-xs mb-3 font-poppins">
+      {{ roleError }}
+    </div>
+    }
+
+    <!-- GENERAL ERROR MESSAGE (for non-field specific errors) -->
+    @if (errorMessage) {
+    <div class="bg-red-100 border border-red-400 text-red-700 px-3 py-2 rounded mb-4 text-sm font-poppins">
+      {{ errorMessage }}
+    </div>
+    }
+
+    <!-- ACTION BUTTONS - Same as Create Template modal -->
+    <div class="flex justify-end gap-4 mt-4">
+      <button type="button"
+        class="text-button font-poppins font-semibold text-base leading-none tracking-normal hover:text-opacity-80 transition-colors"
+        (click)="closeModal()" [disabled]="isSaving">
+        Cancel
+      </button>
+
+      <button type="button" (click)="saveUser()" [disabled]="isSaving"
+        class="bg-button text-white font-poppins font-semibold text-base leading-normal tracking-normal w-16 h-10 px-3 py-2 gap-0.5 rounded-sm opacity-100 hover:bg-opacity-80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        {{ isSaving ? 'Saving...' : 'Save' }}
+      </button>
+    </div>
+
   </div>
+</div>

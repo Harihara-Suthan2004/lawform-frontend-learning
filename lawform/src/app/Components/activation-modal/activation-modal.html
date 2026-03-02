@@ -1,0 +1,86 @@
+<div class="fixed inset-0 bg-black/70 z-[99999] flex items-center justify-center backdrop-blur-sm">
+  <div class="bg-white w-[450px] rounded-lg shadow-2xl p-8 relative" style="max-height: 90vh; overflow-y: auto;">
+
+    <!-- Close button -->
+    <button type="button" (click)="closeModal()"
+      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 cursor-pointer text-xl font-bold z-10">
+      ✕
+    </button>
+
+    <div class="text-center mb-6">
+      <h2 class="font-poppins font-semibold text-3xl text-charcoal-gray">
+        Activate Your Account
+      </h2>
+      <p class="text-gray-500 mt-2">Please set your password to activate your account</p>
+    </div>
+
+    <!-- ERROR MESSAGE -->
+    @if (errorMessage()) {
+    <div class="bg-red-50 border-2 border-red-500 text-red-700 p-4 mb-6 rounded-lg text-center font-bold">
+      {{ errorMessage() }}
+    </div>
+    }
+
+    <!-- SUCCESS MESSAGE -->
+    @if (successMessage()) {
+    <div class="bg-green-50 border-2 border-green-500 text-green-700 p-4 mb-6 rounded-lg text-center font-bold">
+      {{ successMessage() }}
+    </div>
+    }
+
+    <form (ngSubmit)="handleActivation()" #activationForm="ngForm">
+      <div class="flex flex-col gap-5">
+
+        <!-- Email Field (Read-only) -->
+        <div>
+          <label class="block font-poppins text-base font-medium text-charcoal-gray mb-1">
+            Email Address
+          </label>
+          <input type="email" [value]="email" readonly
+            class="w-full h-12 bg-gray-100 border border-gray-300 rounded-lg px-4 font-inter text-sm text-gray-600 cursor-not-allowed" />
+        </div>
+
+        <!-- New Password Field -->
+        <div>
+          <label class="block font-poppins text-base font-medium text-charcoal-gray mb-1">
+            New Password
+          </label>
+          <input type="password" [(ngModel)]="passwordValue" name="password" required minlength="8"
+            #passwordInput="ngModel"
+            class="w-full h-12 border border-gray-300 rounded-lg px-4 font-inter text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all bg-white"
+            [class.border-red-500]="passwordInput.invalid && passwordInput.touched"
+            [disabled]="isLoading() || successMessage().length > 0" placeholder="Enter new password" />
+          @if (passwordInput.invalid && passwordInput.touched) {
+          <div class="text-red-500 text-xs mt-1">
+            Password must be at least 8 characters
+          </div>
+          }
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div>
+          <label class="block font-poppins text-base font-medium text-charcoal-gray mb-1">
+            Confirm Password
+          </label>
+          <input type="password" [(ngModel)]="confirmPasswordValue" name="confirmPassword" required
+            #confirmInput="ngModel"
+            class="w-full h-12 border border-gray-300 rounded-lg px-4 font-inter text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all bg-white"
+            [class.border-red-500]="(confirmInput.invalid && confirmInput.touched) || (passwordValue !== confirmPasswordValue && confirmInput.touched)"
+            [disabled]="isLoading() || successMessage().length > 0" placeholder="Confirm new password" />
+          @if (passwordValue !== confirmPasswordValue && confirmInput.touched) {
+          <div class="text-red-500 text-xs mt-1">
+            Passwords do not match
+          </div>
+          }
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit"
+          [disabled]="activationForm.invalid || passwordValue !== confirmPasswordValue || isLoading() || successMessage()"
+          class="w-full h-12 bg-blue-600 text-white rounded-lg font-inter font-semibold text-lg hover:bg-blue-700 transition-colors shadow-md mt-4 disabled:opacity-50 disabled:cursor-not-allowed">
+          {{ isLoading() ? 'Activating...' : 'Activate Account' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,8 @@ export class Login {
   password = signal('');
   errorMessage = signal('');
   isLoading = signal(false);
+
+  constructor(private toastr: ToastrService) {}
 
   openModal() {
     this.isModalOpen.set(true);
@@ -62,23 +65,27 @@ export class Login {
         console.log('Login success', response);
         this.isLoading.set(false);
         this.closeModal();
+        this.toastr.success(response.message);
         
         // Redirect based on role
         const userRole = this.authService.getUserRole();
         if (userRole === 'admin') {
-          this.router.navigate(['/app/users']); // Redirect admin to users page
+          this.router.navigate(['/app/users']);
         } else {
-          this.router.navigate(['/app/home']); // Redirect regular user to home
+          this.router.navigate(['/app/home']);
         }
       },
       error: (error: HttpErrorResponse) => {
         console.log('Login error:', error);
         this.isLoading.set(false);
         
+        // Show the error message from backend (including activation message)
         if (error.error && error.error.detail) {
           this.errorMessage.set(error.error.detail);
+          this.toastr.error(error.error.detail);
         } else {
           this.errorMessage.set('Invalid credentials');
+          this.toastr.error('Invalid credentials');
         }
       }
     });

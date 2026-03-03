@@ -1,0 +1,12 @@
+/* Ensure the modal container has proper z-index */
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* This ensures the modal overlay appears above everything */
+app-activation-modal {
+  position: relative;
+  z-index: 9999;
+}

@@ -14,6 +14,8 @@ export interface NoticeRequest {
   recipient_address: string;
   penal_code: string;
   notice_type: string;
+  description: string;
+  
 }
 
 @Injectable({

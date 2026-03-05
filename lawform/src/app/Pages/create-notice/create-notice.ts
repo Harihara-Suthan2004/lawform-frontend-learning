@@ -25,7 +25,8 @@ export class CreateNotice {
     recipient_contact: '',
     recipient_address: '',
     penal_code: '',
-    notice_type: ''
+    notice_type: '',
+    description: ''
   };
 
   senderLastName = '';

@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core'; 
-import { HttpClient } from '@angular/common/http';
+import { HttpHeaders,HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 
 export interface NoticeRequest {
   sender_name: string;
@@ -36,4 +37,22 @@ export class NoticeService {
   regenerate(requestId: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/regenerate-notice`, { request_id: requestId });
   }
+
+ downloadNoticePdf(content: string, clientId: number) {
+  const token = localStorage.getItem('auth_token');
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+
+  // This MUST match the Pydantic model exactly
+  const payload = { 
+    text: content,
+    client_id: clientId 
+  };
+
+  return this.http.post('http://localhost:8000/api/download-pdf', 
+    payload, 
+    { headers, responseType: 'blob' }
+  );
+}
 }

@@ -56,6 +56,37 @@ export class NoticePreview implements OnInit, OnDestroy {
       });
   }
 
+  downloadPdf() {
+  const content = this.noticeContent();
+  
+  // Guard clause
+  if (this.isLoading() || content.startsWith("Generating")) return;
+
+  // We only pass 'content' and the 'clientId'. 
+  // The Backend extracts your User ID (19) from the Auth Token automatically.
+  const targetClientId = 1; 
+
+  this.noticeService.downloadNoticePdf(content, targetClientId).subscribe({
+    next: (blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      
+      // Filename logic
+      const fileName = this.requestId ? `Notice_${this.requestId}.pdf` : 'Notice_preview.pdf';
+      link.download = fileName;
+      
+      link.click();
+      window.URL.revokeObjectURL(url);
+    },
+    error: (err) => {
+      console.error('Download failed:', err);
+      // More accurate error message for a dynamic system
+      alert("Download failed. Please ensure you are logged in and the Client exists in the database.");
+    }
+  });
+}
+
   regenerate() {
     if (this.requestId) {
        this.noticeContent.set("Regenerating...");

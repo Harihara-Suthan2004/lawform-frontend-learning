@@ -17,6 +17,8 @@ export class NoticePreview implements OnInit, OnDestroy {
   // Data Signals
   noticeContent = signal<string>("Generating your notice...");
   isLoading = signal<boolean>(true);
+
+  formData : any = null; // Will hold the original form data for PDF generation
   
   private route = inject(ActivatedRoute);
   private noticeService = inject(NoticeService);
@@ -47,6 +49,7 @@ export class NoticePreview implements OnInit, OnDestroy {
         next: (res) => {
           if (res.status === 'success') {
             this.noticeContent.set(res.result);
+            this.formData = res.client_data; // Store form data for PDF generation
             this.isLoading.set(false);
           } else if (res.status === 'failed') {
             this.noticeContent.set("Failed: " + res.result);
@@ -60,13 +63,14 @@ export class NoticePreview implements OnInit, OnDestroy {
   const content = this.noticeContent();
   
   // Guard clause
-  if (this.isLoading() || content.startsWith("Generating")) return;
+  if (this.isLoading() || content.startsWith("Generating")) return; 
 
-  // We only pass 'content' and the 'clientId'. 
-  // The Backend extracts your User ID (19) from the Auth Token automatically.
-  const targetClientId = 1; 
+  if (!this.formData) {
+        alert("Client data not loaded yet. Please wait.");
+        return;
+    }
 
-  this.noticeService.downloadNoticePdf(content, targetClientId).subscribe({
+  this.noticeService.downloadNoticePdf(content, this.formData).subscribe({
     next: (blob) => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
@@ -81,7 +85,6 @@ export class NoticePreview implements OnInit, OnDestroy {
     },
     error: (err) => {
       console.error('Download failed:', err);
-      // More accurate error message for a dynamic system
       alert("Download failed. Please ensure you are logged in and the Client exists in the database.");
     }
   });

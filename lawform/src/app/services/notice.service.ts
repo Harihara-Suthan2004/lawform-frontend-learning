@@ -38,16 +38,23 @@ export class NoticeService {
     return this.http.post<any>(`${this.apiUrl}/regenerate-notice`, { request_id: requestId });
   }
 
- downloadNoticePdf(content: string, clientId: number) {
+ downloadNoticePdf(content: string, formData: any) {
   const token = localStorage.getItem('auth_token');
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
   });
 
-  // This MUST match the Pydantic model exactly
+  // Used by backend to create client
   const payload = { 
     text: content,
-    client_id: clientId 
+    first_name: formData.recipient_name, 
+    last_name: 'Client', 
+    email: formData.recipient_email,
+    mobile_number: formData.recipient_contact,
+    address: formData.recipient_address,
+    zip_code: '625001', // Default for now
+    city: 'Madurai',
+    state: 'Tamil Nadu'
   };
 
   return this.http.post('http://localhost:8000/api/download-pdf', 

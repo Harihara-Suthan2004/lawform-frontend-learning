@@ -120,15 +120,8 @@ export class NoticePreview implements OnInit, OnDestroy {
 
  
 
-  // Guard clause
 
   if (this.isLoading() || content.startsWith("Generating")) return;
-
-
-
-  // We only pass 'content' and the 'clientId'.
-
-  // The Backend extracts your User ID (19) from the Auth Token automatically.
 
   const targetClientId = 1;
 
@@ -144,9 +137,6 @@ export class NoticePreview implements OnInit, OnDestroy {
 
       link.href = url;
 
-     
-
-      // Filename logic
 
       const fileName = this.requestId ? `Notice_${this.requestId}.pdf` : 'Notice_preview.pdf';
 
@@ -163,9 +153,6 @@ export class NoticePreview implements OnInit, OnDestroy {
     error: (err) => {
 
       console.error('Download failed:', err);
-
-      // More accurate error message for a dynamic system
-
       alert("Download failed. Please ensure you are logged in and the Client exists in the database.");
 
     }
@@ -177,20 +164,27 @@ export class NoticePreview implements OnInit, OnDestroy {
 
 
   regenerate() {
-
-    if (this.requestId) {
-
-       this.noticeContent.set("Regenerating...");
-
-       this.noticeService.regenerate(this.requestId).subscribe(() => {
-
-         this.startPolling(this.requestId!);
-
+    if(this.requestId){ 
+    this.isLoading.set(true);
+    this.noticeContent.set("Regenerating...");
+       if(this.pollSub){
+         this.pollSub.unsubscribe(); 
+       }
+       this.noticeService.regenerate(this.requestId).subscribe({
+        next:(response:any)=>{
+          this.requestId = response.request_id;
+          if (this.requestId) {
+            this.startPolling(this.requestId);
+          }
+        },
+        error:(err:any)=>{
+          console.error('Regeneration failed:', err);
+            alert("Regeneration failed.");
+          this.isLoading.set(false);
+        }
        });
 
-    }
-
-  }
+  }}
 
 
 

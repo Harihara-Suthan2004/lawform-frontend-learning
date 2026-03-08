@@ -43,14 +43,14 @@
               <label for="fromFirstName" class="font-poppins font-normal text-base leading-6 text-lightergrey">
                 First Name<span>*</span>
               </label>
-              <input [(ngModel)]="formData.sender_name" id="fromFirstName" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
+              <input [(ngModel)]="formData.sender_firstname" id="fromFirstName" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
             </div>
 
             <div class="h-16 flex flex-col gap-2">
               <label for="fromLastName" class="font-poppins font-normal text-base leading-6 text-lightergrey">
                 Last Name<span>*</span>
               </label>
-              <input [(ngModel)]="senderLastName" id="fromLastName" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
+              <input [(ngModel)]="formData.sender_lastname" id="fromLastName" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
             </div>
           </div>
 
@@ -77,21 +77,27 @@
           
            <div class="h-nav-items flex flex-col gap-2">
             <label for="fromAddress2" class="font-poppins font-normal text-base leading-6 text-lightergrey">Address line 2<span>*</span></label>
-            <input id="fromAddress2" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" value="Address line 2" />
+            <input id="fromAddress2" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
           </div>
 
           <div class="grid grid-cols-3 gap-2">
             <div class="flex flex-col gap-2">
               <label for="fromZip" class="font-poppins font-normal text-base text-lightergrey">ZIP code</label>
-              <input id="fromZip" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900" value="123456" />
+              <input [(ngModel)]="formData.sender_zip" id="fromZip" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900"  />
             </div>
             <div class="flex flex-col gap-2">
               <label for="fromCity" class="font-poppins font-normal text-base text-lightergrey">City</label>
-              <select id="fromCity" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900"><option>Bengaluru</option></select>
+              <select [(ngModel)]="formData.sender_city" id="fromCity" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900">
+                <option>Trichy</option>
+                <option>Bengaluru</option>
+              </select>
             </div>
             <div class="flex flex-col gap-2">
               <label for="fromState" class="font-poppins font-normal text-base text-lightergrey">State<span>*</span></label>
-              <select id="fromState" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900"><option>Karnataka</option></select>
+              <select [(ngModel)]="formData.sender_state" id="fromState" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900">
+                <option>Karnataka</option>
+                <option>Tamil Nadu</option>
+              </select>
             </div>
           </div>
         </div>
@@ -103,14 +109,14 @@
               <label for="fromFirstName" class="font-poppins font-normal text-base leading-6 text-lightergrey">
                 First Name<span>*</span>
               </label>
-              <input [(ngModel)]="formData.recipient_name" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
+              <input [(ngModel)]="formData.recipient_firstname" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
             </div>
 
             <div class="h-16 flex flex-col gap-2">
               <label for="fromLastName" class="font-poppins font-normal text-base leading-6 text-lightergrey">
                 Last Name<span>*</span>
               </label>
-              <input [(ngModel)]="recipientLastName" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
+              <input [(ngModel)]="formData.recipient_lastname" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
             </div>
           </div>
 
@@ -137,21 +143,26 @@
          
          <div class="h-nav-items flex flex-col gap-2">
             <label for="fromAddress2" class="font-poppins font-normal text-base leading-6 text-lightergrey">Address line 2<span>*</span></label>
-            <input id="fromAddress2" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" value="Address line 2" />
+            <input id="fromAddress2" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
           </div>
 
             <div class="grid grid-cols-3 gap-2">
             <div class="flex flex-col gap-2">
               <label for="fromZip" class="font-poppins font-normal text-base text-lightergrey">ZIP code</label>
-              <input id="fromZip" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900" value="123456" />
+              <input [(ngModel)]="formData.recipient_zip" id="fromZip" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900" />
             </div>
             <div class="flex flex-col gap-2">
               <label for="fromCity" class="font-poppins font-normal text-base text-lightergrey">City</label>
-              <select id="fromCity" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900"><option>Bengaluru</option></select>
+              <select [(ngModel)]="formData.recipient_city" id="fromCity" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900">
+                <option>Trichy</option>
+                <option>Bengaluru</option>
+              </select>
             </div>
             <div class="flex flex-col gap-2">
               <label for="fromState" class="font-poppins font-normal text-base text-lightergrey">State<span>*</span></label>
-              <select id="fromState" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900"><option>Karnataka</option></select>
+              <select [(ngModel)]="formData.recipient_state" id="fromState" class="h-10 w-full rounded-md border border-slate-gray px-3 py-2 text-base font-medium text-neutral900">
+                <option>Tamil Nadu</option>
+                <option>Karnataka</option></select>
             </div>
           </div>
         </div>

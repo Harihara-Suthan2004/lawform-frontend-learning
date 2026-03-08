@@ -9,6 +9,7 @@ import { ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Header } from '../../Components/header/header';
 import { RouterLink } from '@angular/router';
+import { NoticeService } from '../../services/notice.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './history.css',
 })
 export class History {
+  private noticeService = inject(NoticeService);
   http = inject(HttpClient);
 
   displayedColumns: string[] = ['ClientName', 'Date', 'NoticeTitle', 'Status'];
@@ -34,13 +36,33 @@ export class History {
     this.dataSource.paginator = this.paginator;
   }
 
-  getData() {
-    this.http
-      .get<APIdatas[]>('https://688b26b82a52cabb9f50597e.mockapi.io/api/LawformHome')
-      .subscribe(data => {
-        this.dataSource.data = data;
-      });
+  downloadDocument(item: any) {
+    this.noticeService.downloadFromHistory(item.id).subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        
+        // Suggesting the filename
+        link.download = `${item.NoticeTitle || 'Notice'}.pdf`;
+        
+        link.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => alert("File no longer exists on the server.")
+    });
   }
+
+  getData() {
+    this.noticeService.getHistory().subscribe({
+      next: (data) => {
+        this.dataSource.data = data;
+      },
+      error: (err) => console.error("Could not fetch history", err)
+    });
+  }
+
+  
   goToPage(index: number) {
     this.paginator.pageIndex = index;
     this.dataSource.paginator = this.paginator; // Refresh the data source view
@@ -59,4 +81,5 @@ export interface APIdatas {
   Date: string;
   NoticeTitle: string;
   id: string;
+  file_path: string;
 }

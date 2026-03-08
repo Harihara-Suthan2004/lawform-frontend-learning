@@ -16,14 +16,22 @@ export class CreateNotice {
 
   // Data object to store user inputs
   formData: NoticeRequest = {
-    sender_name: '',
+    sender_firstname: '',
+    sender_lastname: '',
     sender_email: '',
     sender_contact:  '',
     sender_address: '',
-    recipient_name: '',
+    sender_zip: '',
+    sender_city: '',
+    sender_state: '',
+    recipient_firstname: '',
+    recipient_lastname: '',
     recipient_email: '',
     recipient_contact: '',
     recipient_address: '',
+    recipient_zip: '',
+    recipient_city: '',
+    recipient_state: '',
     penal_code: '',
     notice_type: '',
     description: ''

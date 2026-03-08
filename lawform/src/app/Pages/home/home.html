@@ -40,9 +40,11 @@
                 <span class=" font-medium text-[14px] leading-5 tracking-normal space-x-2.5">Notice
                     Generated</span>
             </div>
-            <div class="flex items-center justify-between  rounded-lg w-full h-10">
+            <div class="flex items-center justify-between rounded-lg w-full h-10">
                 <div class="w-11 h-9 rounded-xl">
-                    <span class=" w-10 h-full font-semibold text-2xl space-x-2 leading-relaxed">128</span>
+                    <span class=" w-10 h-full font-semibold text-2xl space-x-2 leading-relaxed">
+                        {{ totalGenerated() }}
+                    </span>
                 </div>
                 <div class="flex items-center justify-end w-full h-4 rounded-xl gap-2">
                     <span class="flex justify-end w-14 h-4 font-normal leading-3 space-x-2">+11.01%</span>
@@ -165,28 +167,26 @@
                 </tr>
             </thead>
             <tbody>
-                @for(item of ProjectAPI().slice(0,5); track $index){
-                <tr class="h-14 font-poppins">
-
-                    <td class="px-6 text-left">
-                        {{item.ClientName}}
-                    </td>
-
+                @for(item of ProjectAPI(); track item.id){
+                <tr class="h-14 font-poppins border-b border-bright-gray">
+                    <td class="px-6 text-left">{{item.ClientName}}</td>
+                    <td class="px-6 text-center">{{item.Date}}</td>
+                    <td class="px-6 text-left">{{item.NoticeTitle}}</td>
                     <td class="px-6 text-center">
-                        {{item.Date}}
-                    </td>
-
-                    <td class="px-6 text-left">
-                        {{item.NoticeTitle}}
-                    </td>
-
-                    <td class="px-6 text-center">
-                        <button
-                            class="px-4 py-1 rounded-full border border-royal-blue bg-pale-blue text-blue-600 text-sm">
+                        <button class="px-4 py-1 rounded-full border border-royal-blue bg-pale-blue text-blue-600 text-sm">
                             Downloaded
                         </button>
+                        <button (click)="viewDocument(item.file_path)" 
+                            class="p-1 hover:bg-gray-100 rounded-full transition-colors group"
+                            title="View Document">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                            class="text-dark-gray group-hover:text-button">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                        </button>
                     </td>
-
                 </tr>
                 }
             </tbody>

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Header } from '../../Components/header/header';
 import { Router, RouterLink } from "@angular/router";
-import { FormsModule } from '@angular/forms'; // <--- Vital for capturing input
+import { FormsModule } from '@angular/forms'; 
 import { NoticeService, NoticeRequest } from '../../services/notice.service';
 
 @Component({
@@ -39,8 +39,14 @@ export class CreateNotice {
 
   senderLastName = '';
   recipientLastName = '';
+  isSubmitted =false;
 
   generate() {
+    this.isSubmitted = true;
+    if (!this.formData.sender_firstname || !this.formData.recipient_firstname || !this.formData.penal_code || !this.formData.notice_type) {
+      alert('Please fill in all required fields.');
+      return;
+    }
     console.log("Generating notice...", this.formData);
     
     this.noticeService.generateNotice(this.formData).subscribe({

@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, signal, inject, OnInit, OnDestroy } from '@angular/core';
 import { Header } from '../../Components/header/header';
 import { RouterLink, ActivatedRoute } from "@angular/router";
-import { NoticeService, NoticeRequest } from '../../services/notice.service'; // Added NoticeRequest
+import { NoticeService, NoticeRequest } from '../../services/notice.service'; 
 import { interval, Subscription, switchMap, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-created-notice',
-  standalone: true, // Assuming standalone based on your imports
+  standalone: true, 
   imports: [CommonModule, Header, RouterLink],
   templateUrl: './notice-preview.html',
   styleUrl: './notice-preview.css',  
@@ -50,7 +50,6 @@ export class NoticePreview implements OnInit, OnDestroy {
             this.noticeTitle.set(res.notice_title || "Legal Notice");
             
             // If your backend returns the original input in the result, store it
-            // This is crucial for the 'downloadNoticePdf' call later
             if (res.original_input) {
               this.originalNoticeData.set(res.original_input);
             }
@@ -99,13 +98,27 @@ export class NoticePreview implements OnInit, OnDestroy {
   }
 
   regenerate() {
-    if (this.requestId) {
-       this.noticeContent.set("Regenerating...");
-       this.noticeService.regenerate(this.requestId).subscribe(() => {
-         this.startPolling(this.requestId!);
+    if(this.requestId){ 
+    this.isLoading.set(true);
+    this.noticeContent.set("Regenerating...");
+       if(this.pollSub){
+         this.pollSub.unsubscribe(); 
+       }
+       this.noticeService.regenerate(this.requestId).subscribe({
+        next:(response:any)=>{
+          this.requestId = response.request_id;
+          if (this.requestId) {
+            this.startPolling(this.requestId);
+          }
+        },
+        error:(err:any)=>{
+          console.error('Regeneration failed:', err);
+            alert("Regeneration failed.");
+          this.isLoading.set(false);
+        }
        });
-    }
-  }
+
+  }}
 
   toggleMenu(){
     this.showMenu.update(val => !val);

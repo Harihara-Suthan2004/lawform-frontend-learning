@@ -1,6 +1,6 @@
 import { Injectable, NgZone, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, throwError } from 'rxjs';
+import { Observable, tap} from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -24,16 +24,22 @@ export class AuthService {
   private initPopStateListener() {
     window.addEventListener('popstate', () => {
       if (window.location.pathname === '/' && this.isLoggedIn()) {
-        this.logout(); 
+        const target =this.isAdmin() ? '/app/users' : '/app/home';
+        this.router.navigate([target]);
       }
     });
   }
 
-  // Keeps tabs in sync
-  private initStorageListener() {
+ private initStorageListener() {
     window.addEventListener('storage', (event) => {
       if (event.key === this.tokenKey) {
-        this.ngZone.run(() => window.location.reload());
+        this.ngZone.run(() => {
+          if (!event.newValue) {
+            this.router.navigate(['/']);
+          } else {
+            window.location.reload();
+          }
+        });
       }
     });
   }
@@ -42,8 +48,8 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       tap((response: any) => {
         if (response.data?.access_token) {
-          sessionStorage.setItem(this.tokenKey, response.data.access_token);
-          sessionStorage.setItem(this.userKey, JSON.stringify({
+          localStorage.setItem(this.tokenKey, response.data.access_token);
+          localStorage.setItem(this.userKey, JSON.stringify({
             email: credentials.email,
             role: response.data.role
           }));
@@ -57,15 +63,15 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return sessionStorage.getItem(this.tokenKey);
+    return localStorage.getItem(this.tokenKey);
   }
 
   isLoggedIn(): boolean {
-    return !!sessionStorage.getItem(this.tokenKey);
+    return !!localStorage.getItem(this.tokenKey);
   }
 
   getUserRole(): string | null {
-    const userData = sessionStorage.getItem(this.userKey);
+    const userData = localStorage.getItem(this.userKey);
     return userData ? JSON.parse(userData).role : null;
   }
 
@@ -78,8 +84,8 @@ export class AuthService {
   }
 
   logout(): void {
-    sessionStorage.removeItem(this.tokenKey);
-    sessionStorage.removeItem(this.userKey);
+    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.userKey);
     this.router.navigate(['/']);
   }
 }

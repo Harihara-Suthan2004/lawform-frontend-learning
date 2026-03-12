@@ -9,6 +9,7 @@ export interface NoticeRequest {
   sender_email: string;
   sender_contact: string;
   sender_address: string;
+  sender_address2: string;
   sender_zip: string;
   sender_city: string;
   sender_state: string;
@@ -17,6 +18,7 @@ export interface NoticeRequest {
   recipient_email: string;
   recipient_contact: string;
   recipient_address: string;
+  recipient_address2: string;
   recipient_zip: string;
   recipient_city: string;
   recipient_state: string;

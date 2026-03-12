@@ -7,14 +7,13 @@ import { TemplateManagement } from './Pages/template-management/template-managem
 import { Welcome } from './Pages/welcome/welcome';
 import { NoticePreview } from './Pages/notice-preview/notice-preview';
 import { Users } from './Pages/users/users';
-import { authGuard,adminGuard,guestGuard } from './guards/auth.guard';
-
+import { authGuard,adminGuard,guestGuard} from './guards/auth.guard';
 
 export const routes: Routes = [
     {
         path: '',
         component: Welcome,
-        canActivate: [guestGuard]
+        canActivate: [guestGuard] // Blocks the welcome/login page if already logged in
     },
     {
         path: 'app',

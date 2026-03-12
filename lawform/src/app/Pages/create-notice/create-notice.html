@@ -71,13 +71,13 @@
           </div>
 
           <div class="h-nav-items flex flex-col gap-2">
-            <label for="fromAddress1" class="font-poppins font-normal text-base leading-6 text-lightergrey">Address (Full)<span>*</span></label>
+            <label for="fromAddress1" class="font-poppins font-normal text-base leading-6 text-lightergrey">Address line 1<span>*</span></label>
             <input [(ngModel)]="formData.sender_address" id="fromAddress1" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
           </div>
           
            <div class="h-nav-items flex flex-col gap-2">
-            <label for="fromAddress2" class="font-poppins font-normal text-base leading-6 text-lightergrey">Address line 2<span>*</span></label>
-            <input id="fromAddress2" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
+            <label for="fromAddress2" class="font-poppins font-normal text-base leading-6 text-lightergrey">Address line 2<span></span></label>
+            <input [(ngModel)]="formData.sender_address2" id="fromAddress2" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
           </div>
 
           <div class="grid grid-cols-3 gap-2">
@@ -142,8 +142,8 @@
          </div>
          
          <div class="h-nav-items flex flex-col gap-2">
-            <label for="fromAddress2" class="font-poppins font-normal text-base leading-6 text-lightergrey">Address line 2<span>*</span></label>
-            <input id="fromAddress2" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
+            <label for="fromAddress2" class="font-poppins font-normal text-base leading-6 text-lightergrey">Address line 2<span></span></label>
+            <input [(ngModel)]="formData.recipient_address2" id="fromAddress2" class="h-10 rounded-md border border-slate-gray px-3 py-2 font-poppins font-medium text-base text-neutral900" />
           </div>
 
             <div class="grid grid-cols-3 gap-2">

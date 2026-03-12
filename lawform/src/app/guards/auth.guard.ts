@@ -7,12 +7,12 @@ export const guestGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if (authService.isLoggedIn()) {
-    authService.logout(); 
-    return true; 
+    const target = authService.isAdmin() ? '/app/users' : '/app/home';
+    router.navigate([target]);
+    return false; 
   }
   return true;
 };
-
 
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
@@ -23,16 +23,16 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
 
-  // If trying to access home/history/template pages as admin, redirect to users
   const userRole = authService.getUserRole();
   const url = state.url;
   
+  // Admin-only restrictions
   if (userRole === 'admin' && (url.includes('/home') || url.includes('/history'))) {
     router.navigate(['/app/users']);
     return false;
   }
   
-  // If trying to access users page as regular user, redirect to home
+  // User-only restrictions
   if (userRole === 'user' && url.includes('/users')) {
     router.navigate(['/app/home']);
     return false;
@@ -48,7 +48,6 @@ export const adminGuard: CanActivateFn = (route, state) => {
   if (authService.isLoggedIn() && authService.isAdmin()) {
     return true;
   }
-
   router.navigate(['/app/home']);
   return false;
 };

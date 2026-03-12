@@ -8,7 +8,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Header } from '../../Components/header/header';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NoticeService } from '../../services/notice.service';
 
 
@@ -21,6 +21,7 @@ import { NoticeService } from '../../services/notice.service';
 export class History {
   private noticeService = inject(NoticeService);
   http = inject(HttpClient);
+  private router = inject(Router);
 
   displayedColumns: string[] = ['ClientName', 'Date', 'NoticeTitle', 'Status'];
   dataSource = new MatTableDataSource<APIdatas>([]);
@@ -44,6 +45,15 @@ export class History {
       error: (err) => alert("Access denied or file not found in cloud storage.")
     });
   }
+
+  viewDocument(item: APIdatas) {
+      if (item.id) {
+          // Navigation should match: domain/app/downloaded/ID
+          this.router.navigate(['/app/downloaded', item.id]);
+      } else {
+          alert("Document ID not found.");
+      }
+    }
 
   getData() {
     this.noticeService.getHistory().subscribe({

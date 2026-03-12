@@ -2,7 +2,8 @@ import { Component,inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Header } from '../../Components/header/header';
 import { HttpClient } from '@angular/common/http';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { NoticeService } from '../../services/notice.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,12 @@ import { RouterLink } from "@angular/router";
   styleUrl: './home.css',
 })
 export class Home {
+  private noticeService = inject(NoticeService);
   http = inject(HttpClient);
+  private router = inject(Router);
   ProjectAPI = signal<APIdatas[]>([]);
   totalGenerated = signal<number>(0);
+  growthPercentage = signal<number>(0);
 
   constructor(){
     this.GetData()
@@ -28,20 +32,20 @@ export class Home {
       next: (result) => {
         this.ProjectAPI.set(result.recent_documents);
         this.totalGenerated.set(result.total_generated);
+        this.growthPercentage.set(result.growth_percentage);
       },
       error: (err) => console.error("Home stats fetch failed", err)
     });
   }
 
-  viewDocument(filePath: string) {
-    if (filePath) {
-        // If it's a full URL or a relative path served by your FastAPI
-        const fullUrl = `http://localhost:8000/${filePath}`;
-        window.open(fullUrl, '_blank');
+  viewDocument(item: APIdatas) {
+    if (item.id) {
+        // Navigation should match: domain/app/downloaded/ID
+        this.router.navigate(['/app/downloaded', item.id]);
     } else {
-        alert("Document path not found.");
+        alert("Document ID not found.");
     }
-}
+  }
 }
 export interface APIdatas{
   ClientName:string,

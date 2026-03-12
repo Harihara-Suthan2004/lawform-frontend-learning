@@ -2,6 +2,18 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
+export const guestGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  if (authService.isLoggedIn()) {
+    authService.logout(); 
+    return true; 
+  }
+  return true;
+};
+
+
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
@@ -15,7 +27,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const userRole = authService.getUserRole();
   const url = state.url;
   
-  if (userRole === 'admin' && (url.includes('/home') || url.includes('/history') || url.includes('/template-management'))) {
+  if (userRole === 'admin' && (url.includes('/home') || url.includes('/history'))) {
     router.navigate(['/app/users']);
     return false;
   }

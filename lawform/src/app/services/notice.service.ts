@@ -51,12 +51,45 @@ export class NoticeService {
   return this.http.get<any[]>(`${this.apiUrl}/history`, { headers });
 }
 
-downloadFromHistory(docId: number): Observable<Blob> {
+downloadFromHistory(docId: number): Observable<{ url: string }> {
   const token = localStorage.getItem('auth_token');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.get(`${this.apiUrl}/download-file/${docId}`, {
+  return this.http.get<{ url: string }>(`${this.apiUrl}/download-file/${docId}`, {
+    headers
+  });
+}
+
+getNoticeText(docId: number): Observable<{ text: string, client_name: string }> {
+  const token = localStorage.getItem('auth_token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get<{ text: string, client_name: string }>(`${this.apiUrl}/view-text/${docId}`, { headers });
+}
+
+regenerateFromHistory(docId: number): Observable<{ request_id: string, status: string }> {
+  const token = localStorage.getItem('auth_token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.post<{ request_id: string, status: string }>(
+    `${this.apiUrl}/regenerate-history-document/${docId}`, 
+    {}, 
+    { headers }
+  );
+}
+
+saveAndDownloadVersion(parentDocId: number, content: string, title: string) {
+  const token = localStorage.getItem('auth_token');
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+  
+  const payload = { 
+    text: content, 
+    notice_title: title 
+  };
+
+  return this.http.post(`${this.apiUrl}/save-version/${parentDocId}`, payload, {
     headers,
-    responseType: 'blob'
+    observe: 'response', // We need the full response to access headers for the new doc ID
+    responseType: 'blob' // Expecting a PDF file back
   });
 }
 

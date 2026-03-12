@@ -38,18 +38,10 @@ export class History {
 
   downloadDocument(item: any) {
     this.noticeService.downloadFromHistory(item.id).subscribe({
-      next: (blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        
-        // Suggesting the filename
-        link.download = `${item.NoticeTitle || 'Notice'}.pdf`;
-        
-        link.click();
-        window.URL.revokeObjectURL(url);
+      next: (response) => {
+        window.open(response.url, '_blank');
       },
-      error: (err) => alert("File no longer exists on the server.")
+      error: (err) => alert("Access denied or file not found in cloud storage.")
     });
   }
 

@@ -47,9 +47,13 @@
                     </span>
                 </div>
                 <div class="flex items-center justify-end w-full h-4 rounded-xl gap-2">
-                    <span class="flex justify-end w-14 h-4 font-normal leading-3 space-x-2">+11.01%</span>
+                    <span class="flex justify-end w-14 h-4 font-normal leading-3 space-x-2"
+                        [class.text-green-600]="growthPercentage() > 0"
+                        [class.text-red-600]="growthPercentage() < 0">
+                        {{ growthPercentage() > 0 ? '+' : '' }}{{ growthPercentage() }}%
+                    </span>
                     <div class="w-4 h-4 rounded-lg ">
-                        <img src="NoticeGeneratorGraphArrow.png" alt="" class="w-3 h-2 mt-1  fill-black">
+                        <img src="NoticeGeneratorGraphArrow.png" alt="" [class.rotate-180]="growthPercentage() < 0" class="w-3 h-2 mt-1  fill-black">
                     </div>
 
                 </div>
@@ -176,7 +180,7 @@
                         <button class="px-4 py-1 rounded-full border border-royal-blue bg-pale-blue text-blue-600 text-sm">
                             Downloaded
                         </button>
-                        <button (click)="viewDocument(item.file_path)" 
+                        <button (click)="viewDocument(item)" 
                             class="p-1 hover:bg-gray-100 rounded-full transition-colors group"
                             title="View Document">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable,NgZone,inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap,throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginRequest, LoginResponse, UserData, RegisterRequest } from '../models/auth.model';
 
@@ -12,73 +12,76 @@ export class AuthService {
   private tokenKey = 'auth_token';
   private userKey = 'user_data';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  private ngZone = inject(NgZone);
 
-  login(credentials: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials).pipe(
-      tap((response: LoginResponse) => {
+  constructor() {
+    this.initStorageListener();
+    this.initPopStateListener();
+  }
+
+  private initPopStateListener() {
+    window.addEventListener('popstate', () => {
+      if (window.location.pathname === '/' && this.isLoggedIn()) {
+        this.logout(); 
+      }
+    });
+  }
+
+  // Keeps tabs in sync
+  private initStorageListener() {
+    window.addEventListener('storage', (event) => {
+      if (event.key === this.tokenKey) {
+        this.ngZone.run(() => window.location.reload());
+      }
+    });
+  }
+
+  login(credentials: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
+      tap((response: any) => {
         console.log('Login response:', response);
         if (response.data?.access_token) {
-          this.setToken(response.data.access_token);
-          this.setUserData({
+          sessionStorage.setItem(this.tokenKey, response.data.access_token);
+          sessionStorage.setItem(this.userKey, JSON.stringify({
             email: credentials.email,
             role: response.data.role
-          });
+          }));
         }
       })
     );
   }
 
   // Register method for adding users
-  register(userData: RegisterRequest): Observable<any> {
+  register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
 
-  logout(): void {
-    this.removeToken();
-    this.removeUserData();
-    this.router.navigate(['/']);
-  }
-
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
-
-  private setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
-  }
-
-  private removeToken(): void {
-    localStorage.removeItem(this.tokenKey);
-  }
-
-  getUserData(): UserData | null {
-    const userData = localStorage.getItem(this.userKey);
-    return userData ? JSON.parse(userData) : null;
-  }
-
-  private setUserData(userData: UserData): void {
-    localStorage.setItem(this.userKey, JSON.stringify(userData));
-  }
-
-  private removeUserData(): void {
-    localStorage.removeItem(this.userKey);
+    return sessionStorage.getItem(this.tokenKey);
   }
 
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    return !!sessionStorage.getItem(this.tokenKey); 
   }
 
   getUserRole(): string | null {
-    const userData = this.getUserData();
-    return userData ? userData.role : null;
+    const userData = sessionStorage.getItem(this.userKey);
+    return userData ? JSON.parse(userData).role : null;
+  } 
+
+  isUser(): boolean {
+    return this.getUserRole() === 'user';
   }
 
   isAdmin(): boolean {
     return this.getUserRole() === 'admin';
   }
 
-  isUser(): boolean {
-    return this.getUserRole() === 'user';
+  logout(): void {
+    sessionStorage.removeItem(this.tokenKey);
+    sessionStorage.removeItem(this.userKey);
+    this.router.navigate(['/']);
   }
 }
